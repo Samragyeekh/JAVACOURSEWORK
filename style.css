@@ -1,0 +1,144 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Lato', sans-serif;
+  background: #f5ece4;
+  height: 100vh;
+}
+
+.page {
+  display: flex;
+  height: 100vh;
+}
+
+/* Left image */
+.left {
+  width: 45%;
+  overflow: hidden;
+}
+
+.left img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Right form area */
+.right {
+  width: 55%;
+  background: #f5ece4;
+  padding: 80px 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+/* Nav icons */
+.nav-icons {
+  position: absolute;
+  top: 24px;
+  right: 32px;
+  display: flex;
+  gap: 16px;
+  font-size: 1.2rem;
+  color: #5a4a4a;
+}
+
+/* Title */
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.8rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 32px;
+  color: #2a1a1a;
+}
+
+/* Form fields */
+.field {
+  display: flex;
+  align-items: center;
+  margin-bottom: 38px;
+  gap: 16px;
+}
+
+.field label {
+  width: 90px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #3a3030;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.field input {
+  flex: 1;
+  padding: 10px 14px;
+  background: #e8d5c4;
+  border: none;
+  border-radius: 4px;
+  font-family: 'Jost', sans-serif;
+  font-size: 1.1rem;
+  text-align: center;
+  outline: none;
+}
+
+.static-field {
+  flex: 1;
+  padding: 10px 14px;
+  background: #e8d5c4;
+  border-radius: 4px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #3a3030;
+  text-align: center;
+}
+
+/* Bottom row */
+.bottom {
+  display: flex;
+  align-items: center;
+  margin-top: 28px;
+  gap: 32px;
+  padding-left: 106px;
+}
+  
+
+button {
+  padding: 14px 36px;
+  background: #e8d5c4;
+  border: none;
+  border-radius: 50px;
+  font-family: 'Lato', sans-serif;
+  font-size: 1rem;
+  font-weight: 1000;
+  cursor: pointer;
+  color: #2a1a1a;
+}
+
+button:hover {
+  background: #d4b89a;
+}
+
+/* Social icons */
+.social-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.socials {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.socials a {
+  color: #3a3030;
+  text-decoration: none;
+}
+
+.socials a:hover {
+  color: #9a6a4a;
+}
