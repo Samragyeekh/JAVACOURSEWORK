@@ -1,0 +1,112 @@
+@charset "UTF-8";
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #FAF0E6;
+    font-family: 'Noto Sans', sans-serif;
+}
+
+.page-title {
+    text-align: center;
+    padding: 30px 20px 10px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #7B3F1A;
+    letter-spacing: 2px;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 30px 40px;
+}
+
+.card {
+    background-color: white;
+    border: 1px solid #D2A679;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+
+.card img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    display: block;
+}
+
+.card-info {
+    padding: 14px;
+}
+
+.name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #3B1F0E;
+    margin-bottom: 4px;
+}
+
+.stars {
+    color: #D2A679;
+    font-size: 15px;
+    margin-bottom: 6px;
+}
+
+.price {
+    font-size: 14px;
+    color: #A0522D;
+    margin-bottom: 12px;
+}
+
+.card-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-cart {
+    flex: 1;
+    padding: 9px;
+    background-color: #7B3F1A;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: 'Noto Sans', sans-serif;
+    cursor: pointer;
+}
+
+.btn-cart:hover {
+    background-color: #5C2E0E;
+}
+
+/* Hide the real checkbox */
+.wish-toggle {
+    display: none;
+}
+
+/* Heart button default - outlined red */
+.btn-wish {
+    padding: 9px 13px;
+    background-color: #fff0f0;
+    color: #cc3333;
+    border: 1.5px solid #cc3333;
+    border-radius: 6px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+/* When checkbox is checked, fill the heart */
+.wish-toggle:checked + .btn-wish {
+    background-color: #cc3333;
+    color: white;
+}

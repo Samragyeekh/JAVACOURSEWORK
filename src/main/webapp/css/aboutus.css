@@ -1,0 +1,79 @@
+@charset "UTF-8";
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Jost', sans-serif;
+  background: #e8ddd6;
+  color: #3a3030;
+}
+
+.team-list {
+  max-width: 700px;
+  margin: 60px auto;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.team-list h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.team-card {
+  background: #f5ede8;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  width: 100%;
+}
+
+.team-photo {
+  width: 40%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+  flex-shrink: 0;
+}
+
+.team-info {
+  flex: 1;
+  padding: 30px;
+  text-align: center;
+}
+
+.name-link {
+  text-decoration: none;
+  color: #3a3030;
+}
+
+.name-link:hover h3 {
+  text-decoration: underline;
+  color: #9b7b7b;
+}
+
+.team-info h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-size: 1.5rem;
+  margin-bottom: 4px;
+}
+
+.team-info .role {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 12px;
+}
+
+.team-info p {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  max-width: 300px;
+  margin: 0 auto;
+}
