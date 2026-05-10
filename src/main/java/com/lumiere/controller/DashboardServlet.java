@@ -23,6 +23,10 @@ public class DashboardServlet extends HttpServlet {
                 int id = Integer.parseInt(request.getParameter("id"));
                 dao.deleteProduct(id);
                 request.setAttribute("success", "Product deleted successfully.");
+            } else if ("edit".equals(action)) {
+                int id = Integer.parseInt(request.getParameter("id"));
+                ProductModel editProduct = dao.getProductById(id);
+                request.setAttribute("editProduct", editProduct);
             }
             List<ProductModel> products = dao.getAllProducts();
             request.setAttribute("products", products);

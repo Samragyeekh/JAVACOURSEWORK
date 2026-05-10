@@ -1,11 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="com.lumiere.model.UserModel" %>
+<%@ page import="com.lumiere.model.ProductModel" %>
+<%@ page import="java.util.List" %>
 <%
     UserModel user = (UserModel) session.getAttribute("user");
     if (user == null) {
         response.sendRedirect(request.getContextPath() + "/login");
         return;
     }
+    ProductModel editProduct = (ProductModel) request.getAttribute("editProduct");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,6 +32,21 @@
 
     <h2>Manage Products</h2>
 
+    <% if (editProduct != null) { %>
+    <h3>Edit Product</h3>
+    <form action="${pageContext.request.contextPath}/dashboard" method="post">
+        <input type="hidden" name="action" value="update">
+        <input type="hidden" name="id" value="<%= editProduct.getId() %>">
+        <input type="text" name="name" value="<%= editProduct.getName() %>" placeholder="Product Name" required>
+        <input type="text" name="description" value="<%= editProduct.getDescription() %>" placeholder="Description" required>
+        <input type="number" name="price" value="<%= editProduct.getPrice() %>" placeholder="Price" step="0.01" required>
+        <input type="number" name="stock" value="<%= editProduct.getStock() %>" placeholder="Stock" required>
+        <input type="text" name="category" value="<%= editProduct.getCategory() %>" placeholder="Category">
+        <input type="text" name="imageUrl" value="<%= editProduct.getImageUrl() %>" placeholder="Image URL">
+        <button type="submit">Update Product</button>
+        <a href="${pageContext.request.contextPath}/dashboard">Cancel</a>
+    </form>
+    <% } else { %>
     <form action="${pageContext.request.contextPath}/dashboard" method="post">
         <input type="hidden" name="action" value="add">
         <input type="text" name="name" placeholder="Product Name" required>
@@ -39,16 +57,16 @@
         <input type="text" name="imageUrl" placeholder="Image URL">
         <button type="submit">Add Product</button>
     </form>
+    <% } %>
 
     <table>
         <tr>
             <th>ID</th><th>Name</th><th>Price</th><th>Stock</th><th>Category</th><th>Actions</th>
         </tr>
         <%
-            java.util.List<com.lumiere.model.ProductModel> products =
-                (java.util.List<com.lumiere.model.ProductModel>) request.getAttribute("products");
+            List<ProductModel> products = (List<ProductModel>) request.getAttribute("products");
             if (products != null) {
-                for (com.lumiere.model.ProductModel p : products) {
+                for (ProductModel p : products) {
         %>
         <tr>
             <td><%= p.getId() %></td>
