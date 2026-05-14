@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +10,7 @@
 </head>
 <body>
 
-<%@ include file="header.jsp" %>
+<%@ include file="/WEB-INF/pages/header.jsp" %>
 
 <div class="container">
     <div class="image-side">
@@ -19,31 +20,30 @@
     <div class="form-side">
         <h2>Create Account</h2>
 
-        <% String error = (String) request.getAttribute("error"); %>
-        <% if (error != null) { %>
-            <p style="color:red; text-align:center; font-size:13px;"><%= error %></p>
-        <% } %>
+        <c:if test="${not empty error}">
+            <p style="color:red; text-align:center; font-size:13px;">${error}</p>
+        </c:if>
 
         <form action="register" method="post">
             <div class="field">
                 <label for="first_name">First Name</label>
-                <input type="text" id="first_name" name="first_name" placeholder="Enter your first name" required>
+                <input type="text" id="first_name" name="first_name" placeholder="Enter your first name">
             </div>
             <div class="field">
                 <label for="last_name">Last Name</label>
-                <input type="text" id="last_name" name="last_name" placeholder="Enter your last name" required>
+                <input type="text" id="last_name" name="last_name" placeholder="Enter your last name">
             </div>
             <div class="field">
                 <label for="username">Username</label>
-                <input type="text" id="username" name="username" placeholder="Enter your username" required>
+                <input type="text" id="username" name="username" placeholder="Enter your username">
             </div>
             <div class="field">
                 <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                <input type="email" id="email" name="email" placeholder="Enter your email">
             </div>
             <div class="field">
                 <label for="password">Password</label>
-                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                <input type="password" id="password" name="password" placeholder="Enter your password">
             </div>
             <div class="field">
                 <label for="phone">Phone</label>
@@ -66,12 +66,12 @@
         </form>
 
         <div class="links">
-            <a href="login.jsp">Already have an account? Login</a>
+            <a href="${pageContext.request.contextPath}/login">Already have an account? Login</a>
         </div>
     </div>
 </div>
 
-<%@ include file="footer.jsp" %>
+<%@ include file="/WEB-INF/pages/footer.jsp" %>
 
 </body>
 </html>

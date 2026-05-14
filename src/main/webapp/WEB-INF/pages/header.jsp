@@ -15,8 +15,7 @@
 <li><a href="${pageContext.request.contextPath}/ContactServlet">CONTACT US</a></li>
     </ul>
 
-    <a href="login.jsp" style="color: #ffffff; font-size: 18px;"><i class="fas fa-user"></i></a>
-</header>
+<a href="${pageContext.request.contextPath}/login" style="color: #ffffff !important; font-size: 18px;"><i class="fas fa-user"></i></a></header>
 
 <!-- Action Bar -->
 <header class="action">

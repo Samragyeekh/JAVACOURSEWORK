@@ -1,5 +1,4 @@
 package com.lumiere.controller;
-
 import com.lumiere.dao.UserDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -26,6 +25,7 @@ public class RegisterServlet extends HttpServlet {
         String dob       = request.getParameter("dob");
         String gender    = request.getParameter("gender");
 
+        // Check required fields
         if (firstName.isEmpty() || lastName.isEmpty() || username.isEmpty() ||
             email.isEmpty() || password.isEmpty()) {
             request.setAttribute("error", "All required fields must be filled.");
@@ -33,30 +33,46 @@ public class RegisterServlet extends HttpServlet {
             return;
         }
 
+        // Validate email format
+        if (!email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$")) {
+            request.setAttribute("error", "Please enter a valid email address.");
+            request.getRequestDispatcher("/WEB-INF/pages/register.jsp").forward(request, response);
+            return;
+        }
+
+        // Validate phone number
+        if (phone != null && !phone.isEmpty()) {
+            if (!phone.matches("\\d+")) {
+                request.setAttribute("error", "Phone number must contain digits only.");
+                request.getRequestDispatcher("/WEB-INF/pages/register.jsp").forward(request, response);
+                return;
+            }
+            if (phone.length() > 10) {
+                request.setAttribute("error", "Phone number must not exceed 10 digits.");
+                request.getRequestDispatcher("/WEB-INF/pages/register.jsp").forward(request, response);
+                return;
+            }
+        }
+
         try {
             UserDAO dao = new UserDAO();
-
             if (dao.usernameExists(username)) {
                 request.setAttribute("error", "Username already taken. Please choose another.");
                 request.getRequestDispatcher("/WEB-INF/pages/register.jsp").forward(request, response);
                 return;
             }
-
             if (dao.emailExists(email)) {
                 request.setAttribute("error", "Email already registered. Please login.");
                 request.getRequestDispatcher("/WEB-INF/pages/register.jsp").forward(request, response);
                 return;
             }
-
             boolean success = dao.registerUser(firstName, lastName, username, email, password, phone, dob, gender);
-
             if (success) {
                 response.sendRedirect(request.getContextPath() + "/login");
             } else {
                 request.setAttribute("error", "Registration failed. Please try again.");
                 request.getRequestDispatcher("/WEB-INF/pages/register.jsp").forward(request, response);
             }
-
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("error", "Something went wrong: " + e.getMessage());
