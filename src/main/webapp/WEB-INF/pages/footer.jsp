@@ -7,10 +7,10 @@
         <div class="footer-content">
             <h3>Useful Links</h3>
             <ul>
-                <li><a href="home.jsp">Home</a></li>
-                <li><a href="products.jsp">Products</a></li>
-                <li><a href="about-us.jsp">About us</a></li>
-                <li><a href="contact-us.jsp">Contact us</a></li>
+                <li><a href="${pageContext.request.contextPath}/home">Home</a></li>
+                <li><a href="${pageContext.request.contextPath}/products">Products</a></li>
+                <li><a href="${pageContext.request.contextPath}/about">About us</a></li>
+                <li><a href="${pageContext.request.contextPath}/contact">Contact us</a></li>
             </ul>
         </div>
         <div class="footer-content">      
