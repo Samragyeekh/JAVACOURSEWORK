@@ -1,68 +1,222 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%
-    // In real implementation, fetch product by ID from DB using request.getParameter("id")
-    // String id = request.getParameter("id");
-    // Product p = ProductDAO.getProductById(Integer.parseInt(id));
-
-    // Hardcoded for now
-    String name        = "Rose Blush";
-    String image       = "images/blush.png";
-    String stars       = "&#9733;&#9733;&#9733;&#9733;&#9734;";
-    String price       = "Rs. 1,200";
-    String description = "A silky-smooth blush that gives your cheeks a natural, rosy flush. "
-                       + "Lightweight and buildable, it blends effortlessly for a fresh, "
-                       + "healthy glow that lasts all day. Perfect for all skin tones.";
-    String category    = "Face Makeup";
-    String skinType    = "All skin types";
-    String availability = "In Stock";
-%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Detail - Lumière</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600&display=swap">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/productdescription.css">
+    <title>${product.name} - Lumière</title>
+    <link rel="stylesheet" href="https://googleapis.com">
+    <link rel="stylesheet" href="https://cloudflare.com">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/productdescription.css">
 </head>
 <body>
 
-    <a href="products.jsp" class="back-btn">
-        <i class="fas fa-arrow-left"></i> Back to Products
-    </a>
+<%@ include file="header.jsp" %>
 
-    <div class="detail-container">
-        <div class="detail-image">
-            <img src="<%= image %>" alt="<%= name %>">
+<div class="desc-wrapper">
+    
+    <!-- PURE CSS GALLERY RADIO ENGINE -->
+    <input type="radio" id="img-slot-1" name="gallery-select" class="gallery-radio-trigger" checked>
+    <input type="radio" id="img-slot-2" name="gallery-select" class="gallery-radio-trigger">
+    <input type="radio" id="img-slot-3" name="gallery-select" class="gallery-radio-trigger">
+    <input type="radio" id="img-slot-4" name="gallery-select" class="gallery-radio-trigger">
+
+    <!-- PURE CSS SHADE DOT SELECTION ENGINE -->
+    <input type="radio" id="shade-1" name="shade-select" class="shade-radio-trigger" checked>
+    <input type="radio" id="shade-2" name="shade-select" class="shade-radio-trigger">
+    <input type="radio" id="shade-3" name="shade-select" class="shade-radio-trigger">
+    <input type="radio" id="shade-4" name="shade-select" class="shade-radio-trigger">
+
+    <!-- PURE CSS QUANTITY STEPPER ENGINE -->
+    <input type="radio" id="desc-qty-1" name="desc-qty-group" class="desc-qty-radio d-qty-r-1" checked>
+    <input type="radio" id="desc-qty-2" name="desc-qty-group" class="desc-qty-radio d-qty-r-2">
+    <input type="radio" id="desc-qty-3" name="desc-qty-group" class="desc-qty-radio d-qty-r-3">
+    <input type="radio" id="desc-qty-4" name="desc-qty-group" class="desc-qty-radio d-qty-r-4">
+
+    <!-- TOP ACTIVE MODULE SECTION -->
+    <div class="main-details-section">
+        <div class="gallery-column">
+            <div class="thumbnails-strip">
+                <label for="img-slot-1" class="thumb-box t-box-1"><img src="${product.image}" alt="View 1"></label>
+                <label for="img-slot-2" class="thumb-box t-box-2"><img src="${product.image}" alt="View 2"></label>
+                <label for="img-slot-3" class="thumb-box t-box-3"><img src="${product.image}" alt="View 3"></label>
+                <label for="img-slot-4" class="thumb-box t-box-4"><img src="${product.image}" alt="View 4"></label>
+            </div>
+            <div class="main-display-frame">
+                <img src="${product.image}" class="main-view-img view-img-1" alt="${product.alt}">
+                <img src="${product.image}" class="main-view-img view-img-2" alt="${product.alt}">
+                <img src="${product.image}" class="main-view-img view-img-3" alt="${product.alt}">
+                <img src="${product.image}" class="main-view-img view-img-4" alt="${product.alt}">
+            </div>
         </div>
-        <div class="detail-info">
-            <h1><%= name %></h1>
-            <p class="stars"><%= stars %></p>
-            <p class="price"><%= price %></p>
-            <hr>
-            <p class="description"><%= description %></p>
-            <div>
-                <p class="label">Category</p>
-                <p class="value"><%= category %></p>
+
+        <div class="info-column">
+            <p class="breadcrumbs">home / luxury essentials</p>
+            <h1 class="item-heading">${product.name}</h1>
+            <p class="meta-line">${product.volume} | hydrating luxury blend</p>
+            <p class="rating-stars">${product.stars}</p>
+
+            <div class="option-label">shade: 
+                <span class="shade-txt text-1">cool pink taffy</span>
+                <span class="shade-txt text-2">soft nude apricot</span>
+                <span class="shade-txt text-3">velvet ruby crimson</span>
+                <span class="shade-txt text-4">deep chestnut cocoa</span>
             </div>
-            <div>
-                <p class="label">Skin Type</p>
-                <p class="value"><%= skinType %></p>
+
+            <div class="swatches-row">
+                <label for="shade-1" class="swatch-dot dot-1" style="background-color: #e6ccb2;"></label>
+                <label for="shade-2" class="swatch-dot dot-2" style="background-color: #ddb892;"></label>
+                <label for="shade-3" class="swatch-dot dot-3" style="background-color: #b08968;"></label>
+                <label for="shade-4" class="swatch-dot dot-4" style="background-color: #9c6644;"></label>
             </div>
-            <div>
-                <p class="label">Availability</p>
-                <p class="value"><%= availability %></p>
+
+            <div class="purchase-actions-row">
+                <div class="qty-stepper-container">
+                    <div class="minus-btn-stack">
+                        <label class="step-lbl l-down-disabled"><i class="fas fa-minus"></i></label>
+                        <label for="desc-qty-1" class="step-lbl l-down-to-1"><i class="fas fa-minus"></i></label>
+                        <label for="desc-qty-2" class="step-lbl l-down-to-2"><i class="fas fa-minus"></i></label>
+                        <label for="desc-qty-3" class="step-lbl l-down-to-3"><i class="fas fa-minus"></i></label>
+                    </div>
+                    <div class="digits-view-stack">
+                        <span class="count-digit digit-1">1</span>
+                        <span class="count-digit digit-2">2</span>
+                        <span class="count-digit digit-3">3</span>
+                        <span class="count-digit digit-4">4</span>
+                    </div>
+                    <div class="plus-btn-stack">
+                        <label for="desc-qty-2" class="step-lbl l-up-to-2"><i class="fas fa-plus"></i></label>
+                        <label for="desc-qty-3" class="step-lbl l-up-to-3"><i class="fas fa-plus"></i></label>
+                        <label for="desc-qty-4" class="step-lbl l-up-to-4"><i class="fas fa-plus"></i></label>
+                        <label class="step-lbl l-up-disabled"><i class="fas fa-plus"></i></label>
+                    </div>
+                </div>
+
+                <!-- Form redirects straight to your server side cart handler -->
+                <form action="products" method="POST" class="cart-form-container">
+                    <input type="hidden" name="productId" value="${product.id}">
+                    <button type="submit" class="cart-submit-btn card-p-1">add to cart - ${product.price}</button>
+                    <button type="submit" class="cart-submit-btn card-p-2">add to cart - ${product.price}</button>
+                    <button type="submit" class="cart-submit-btn card-p-3">add to cart - ${product.price}</button>
+                    <button type="submit" class="cart-submit-btn card-p-4">add to cart - ${product.price}</button>
+                </form>
             </div>
-            <div class="btn-row">
-                <button class="btn-cart">Add to Cart</button>
-                <input type="checkbox" class="wish-toggle" id="wish-detail">
-                <label class="btn-wish" for="wish-detail">
-                    <i class="fas fa-heart"></i>
-                </label>
+
+            <!-- INFOGRAPHIC BLOCKS -->
+            <div class="accordion-item">
+                <input type="checkbox" id="toggle-details" class="accordion-toggle-input" checked>
+                <label for="toggle-details" class="accordion-header">details <i class="fas icon-state"></i></label>
+                <div class="accordion-panel">${product.description}</div>
+            </div>
+            <div class="accordion-item">
+                <input type="checkbox" id="toggle-ingredients" class="accordion-toggle-input">
+                <label for="toggle-ingredients" class="accordion-header">ingredients <i class="fas icon-state"></i></label>
+                <div class="accordion-panel">Enriched with Organic Coconut Water Extract, Vegetable Glycerin, Hyaluronic Acid, Rosewater Distillate, and Botanical Mineral Colorants.</div>
+            </div>
+
+            <div class="badges-flex-container">
+                <div class="badge-unit"><div class="badge-ring"><i class="fas fa-leaf"></i></div><p class="badge-caption">vegan</p></div>
+                <div class="badge-unit"><div class="badge-ring"><i class="fas fa-paw"></i></div><p class="badge-caption">cruelty free</p></div>
+                <div class="badge-unit"><div class="badge-ring"><i class="fas fa-sparkles"></i></div><p class="badge-caption">clean</p></div>
+                <div class="badge-unit"><div class="badge-ring"><i class="fas fa-shield-halved"></i></div><p class="badge-caption">paraben free</p></div>
             </div>
         </div>
     </div>
+
+    <!-- PROMOTIONAL BRAND EDITORIAL BANNER ROW -->
+    <div class="editorial-banner-grid">
+        <div class="promo-editorial-card">
+            <span class="brand-tag-note">from lumiere</span>
+            <h2 class="editorial-quote-text">MY GO-TO FOR A COMFORTABLE STAINED LOOK</h2>
+            <img src="${product.image}" alt="Lifestyle Frame">
+        </div>
+        <div class="instructional-use-card">
+            <h3 class="use-guide-heading">how to use</h3>
+            <div class="use-images-split">
+                <img src="${product.image}" alt="Use 1">
+                <img src="${product.image}" alt="Use 2">
+            </div>
+            <p class="use-instruction-paragraph">Apply directly onto skin surfaces or lips utilizing precise smooth strokes for instant luxurious coverage. Wear alone for a sheer natural finish or layer to build custom statement pigmentation intensity.</p>
+        </div>
+    </div>
+
+    <!-- "WHY WE LOVE IT" MODULE -->
+    <div class="editorial-banner-grid">
+        <div class="why-love-card">
+            <h3 class="use-guide-heading" style="margin-bottom:24px;">why we love it</h3>
+            <p class="love-feature-title">kiss-proof, buildable color</p>
+            <p class="love-feature-body">smudge-resistant finish that feels lightweight and comfortable all day.</p>
+            <p class="love-feature-title">up to 24-hour moisture</p>
+            <p class="love-feature-body">doesn't leave skin or lips feeling tight, cakey, or dry.</p>
+            <p class="love-feature-title">made with coconut water & glycerin</p>
+            <p class="love-feature-body">delivers a burst of refreshing, vital hydration with every application.</p>
+        </div>
+        <div class="why-love-visual"><img src="${product.image}" alt="Family Frame"></div>
+    </div>
+
+    <!-- RECOMMENDATION BAR SYSTEM WITH INTEGRATED SERVER CAROUSEL SLIDER LINK -->
+    <div class="recommendations-carousel-header">
+        <h2>YOU MAY ALSO LIKE</h2>
+        <div class="carousel-pagination-dots">
+            <c:forEach var="dot" begin="1" end="${totalRecPages}">
+                <a href="?id=${product.id}&recPage=${dot}" class="carousel-dot ${dot == currentRecPage ? 'active' : ''}"></a>
+            </c:forEach>
+        </div>
+    </div>
+
+    <!-- HOVER CAROUSEL PRODUCTS GRID MATRIX -->
+    <div class="recommendations-flex-row">
+        <c:forEach var="rec" items="${recommendations}">
+            <div class="rec-item-card">
+                <!-- Inner variables to isolate specific sub counter scopes -->
+                <input type="radio" name="rec-qty-group-${rec.id}" id="rec-qty-${rec.id}-1" class="rec-radio rec-r-1" checked>
+                <input type="radio" name="rec-qty-group-${rec.id}" id="rec-qty-${rec.id}-2" class="rec-radio rec-r-2">
+                <input type="radio" name="rec-qty-group-${rec.id}" id="rec-qty-${rec.id}-3" class="rec-radio rec-r-3">
+
+                <div class="rec-image-holder">
+                    <span class="rec-badge-tag">new collection</span>
+                    <a href="productdescription?id=${rec.id}"><img src="${rec.image}" alt="${rec.alt}"></a>
+                </div>
+                <div class="rec-card-meta">
+                    <p class="rec-stars">${rec.stars}</p>
+                    <p class="rec-title">${rec.name}</p>
+                    <p class="rec-price">${rec.price}</p>
+                </div>
+
+                <!-- SLIDE UP ACTIVE INTERACTION DRAWER -->
+                <div class="rec-card-overlay">
+                    <div class="rec-qty-container">
+                        <div class="rec-btn-stack">
+                            <label class="rec-lbl r-down-dis"><i class="fas fa-minus"></i></label>
+                            <label for="rec-qty-${rec.id}-1" class="rec-lbl r-down-to-1"><i class="fas fa-minus"></i></label>
+                            <label for="rec-qty-${rec.id}-2" class="rec-lbl r-down-to-2"><i class="fas fa-minus"></i></label>
+                        </div>
+                        <div class="rec-digits-stack">
+                            <span class="rec-digit r-dig-1">1</span>
+                            <span class="rec-digit r-dig-2">2</span>
+                            <span class="rec-digit r-dig-3">3</span>
+                        </div>
+                        <div class="rec-btn-stack">
+                            <label for="rec-qty-${rec.id}-2" class="rec-lbl r-up-to-2"><i class="fas fa-plus"></i></label>
+                            <label for="rec-qty-${rec.id}-3" class="rec-lbl r-up-to-3"><i class="fas fa-plus"></i></label>
+                            <label class="rec-lbl r-up-dis"><i class="fas fa-plus"></i></label>
+                        </div>
+                    </div>
+                    <form action="products" method="POST" style="flex:1; display:flex;">
+                        <input type="hidden" name="productId" value="${rec.id}">
+                        <button type="submit" class="rec-cart-btn r-tag-1">add to cart - ${rec.price}</button>
+                        <button type="submit" class="rec-cart-btn r-tag-2">add to cart - ${rec.price}</button>
+                        <button type="submit" class="rec-cart-btn r-tag-3">add to cart - ${rec.price}</button>
+                    </form>
+                </div>
+            </div>
+        </c:forEach>
+    </div>
+
+</div>
+
+<%@ include file="footer.jsp" %>
 
 </body>
 </html>
