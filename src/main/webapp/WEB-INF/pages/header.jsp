@@ -1,48 +1,32 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="com.lumiere.model.UserModel" %>
+<%
+    UserModel headerUser = (UserModel) session.getAttribute("user");
+%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-<!-- Font Awesome Icons -->
-<link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<header class="pages">
+    <div class="logo">LUMIÈRE</div>
 
-<header class="main-header">
-    <div class="top-bar">
-        <div class="brand-area">
-            <i class="fa-solid fa-bars menu-icon"></i>
-            <h1>LUMIÈRE</h1>
-        </div>
+    <ul>
+        <li><a href="${pageContext.request.contextPath}/home">HOME</a></li>
+        <li><a href="${pageContext.request.contextPath}/products">PRODUCTS</a></li>
+        <li><a href="${pageContext.request.contextPath}/about">ABOUT US</a></li>
+        <li><a href="${pageContext.request.contextPath}/contact">CONTACT US</a></li>
+    </ul>
 
-        <nav class="nav-links">
-            <a href="${pageContext.request.contextPath}/home">Home</a>
-            <a href="${pageContext.request.contextPath}/products">Products</a>
-            <a href="${pageContext.request.contextPath}/about">About Us</a>
-            <a href="${pageContext.request.contextPath}/contact">Contact Us</a>
-        </nav>
-
-        <div class="user-icon">
-            <i class="fa-solid fa-user"></i>
-        </div>
-    </div>
-
-    <div class="search-bar-section">
-        <button class="icon-btn">
-            <i class="fa-solid fa-filter"></i>
-        </button>
-
-        <div class="search-box">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" placeholder="Search for products...">
-        </div>
-
-        <div class="right-icons">
-            <button class="icon-btn">
-                <i class="fa-solid fa-cart-shopping"></i>
-            </button>
-
-            <button class="icon-btn">
-                <i class="fa-solid fa-heart"></i>
-            </button>
-        </div>
+    <div class="header-icons">
+        <% if (headerUser != null) { %>
+            <span class="welcome-text">Hi, <%= headerUser.getFirstName() %>!</span>
+            <% if ("admin".equals(headerUser.getRole())) { %>
+                <a href="${pageContext.request.contextPath}/dashboard" title="Dashboard"><i class="fas fa-tachometer-alt"></i></a>
+            <% } %>
+            <a href="${pageContext.request.contextPath}/logout" title="Logout"><i class="fas fa-sign-out-alt"></i></a>
+        <% } else { %>
+            <a href="${pageContext.request.contextPath}/login" title="Login"><i class="fas fa-user"></i></a>
+        <% } %>
+        <a href="${pageContext.request.contextPath}/cart" title="Cart"><i class="fas fa-shopping-cart"></i></a>
+        <a href="${pageContext.request.contextPath}/wishlist" title="Wishlist"><i class="fas fa-heart"></i></a>
     </div>
 </header>
