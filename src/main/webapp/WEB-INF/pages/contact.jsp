@@ -18,18 +18,29 @@
 
     <div class="right">
         <h1>Contact Us</h1>
-        <form action="ContactServlet" method="POST">
+
+        <!-- Error message -->
+        <c:if test="${not empty error}">
+            <p class="error">${error}</p>
+        </c:if>
+
+        <!-- Success message -->
+        <c:if test="${not empty success}">
+            <p class="success">${success}</p>
+        </c:if>
+
+        <form action="${pageContext.request.contextPath}/contact" method="POST">
             <div class="field">
                 <label for="name">Name:</label>
-                <input type="text" id="name" name="name" placeholder="Your full name" required/>
+                <input type="text" id="name" name="name" placeholder="Your full name" value="${param.name}"/>
             </div>
             <div class="field">
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" placeholder="your@email.com" required/>
+                <input type="email" id="email" name="email" placeholder="your@email.com" value="${param.email}"/>
             </div>
             <div class="field">
                 <label for="message">Message:</label>
-                <input type="text" id="message" name="message" placeholder="Your message" required/>
+                <input type="text" id="message" name="message" placeholder="Your message" value="${param.message}"/>
             </div>
             <div class="field">
                 <label>Contact:</label>

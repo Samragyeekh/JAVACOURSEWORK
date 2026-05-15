@@ -7,21 +7,30 @@
     box-sizing: border-box;
 }
 
+html,
+body {
+    width: 100%;
+    overflow-x: hidden;
+}
+
 footer {
+    width: 100%;
     background-color: #C9A99A;
     font-family: 'Noto Sans', sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
 footer .container {
-    display: flex;
-    justify-content: space-around;
+    width: 100%;
+    margin: 0;
     padding: 30px 40px;
     background-color: #e8d5ce;
-    width: 100%;
-    height: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
     border-radius: 0;
     border: none;
-    margin: 0;
 }
 
 .footer-content h3 {
@@ -64,11 +73,13 @@ footer .container {
 }
 
 .bottom-content {
+    width: 100%;
     background-color: #C9A99A;
     text-align: center;
     padding: 14px;
     font-size: 12px;
     color: white;
+    margin: 0;
 }
 
 .bottom-content p {
@@ -87,11 +98,14 @@ footer .container {
 }
 
 footer .logo {
+    width: 100%;
+    margin: 0;
+    padding: 10px 0;
+    display: block;
     text-align: center;
-    padding: 10px;
     background-color: #e8d5ce;
     color: #5a3825;
     font-size: 18px;
     font-weight: 600;
-    letter-spacing: 2px;
+    letter-spacing: 6px;
 }
