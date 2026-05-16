@@ -1,0 +1,136 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Jost:wght@300;400;500&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: #FAF0E6;
+    font-family: 'Jost', sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.wishlist-container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+    flex: 1;
+}
+
+.wishlist-container h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 300;
+    color: #3A2A20;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+}
+
+.empty-wishlist {
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.empty-wishlist i {
+    font-size: 60px;
+    color: #cc3333;
+    margin-bottom: 20px;
+    opacity: 0.4;
+}
+
+.empty-wishlist p {
+    font-size: 16px;
+    margin-bottom: 24px;
+    color: #8a6a5a;
+}
+
+.btn-shop {
+    padding: 12px 32px;
+    background-color: #7B3F1A;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.wishlist-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+.wish-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #E8D5C8;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.wish-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(160, 82, 45, 0.12);
+}
+
+.wish-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.wish-info {
+    padding: 14px;
+}
+
+.wish-info .name {
+    font-size: 14px;
+    font-weight: 500;
+    color: #3A2A20;
+    margin-bottom: 6px;
+}
+
+.wish-info .price {
+    font-size: 14px;
+    color: #A0522D;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.wish-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-cart {
+    flex: 1;
+    padding: 9px;
+    background-color: #7B3F1A;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'Jost', sans-serif;
+    transition: background 0.2s;
+}
+
+.btn-cart:hover { background-color: #5C2E0E; }
+
+.btn-remove {
+    padding: 9px 12px;
+    background: none;
+    border: 1.5px solid #cc3333;
+    color: #cc3333;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s;
+}
+
+.btn-remove:hover {
+    background: #cc3333;
+    color: white;
+}

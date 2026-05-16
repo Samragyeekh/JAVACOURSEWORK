@@ -1,0 +1,80 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Jost:wght@300;400;500&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header.pages {
+    background-color: #C9A99A;
+    display: flex;
+    padding: 16px 50px;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.logo {
+    color: #ffffff !important;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 400;
+    letter-spacing: 4px;
+}
+
+header.pages ul {
+    list-style: none;
+    display: flex;
+    gap: 36px;
+}
+
+header.pages ul li a {
+    color: #ffffff !important;
+    text-decoration: none;
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: color 0.2s;
+}
+
+header.pages ul li a:hover {
+    color: #f5e6e0 !important;
+}
+
+.header-icons {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-right: 10px;
+}
+
+.header-icons a {
+    text-decoration: none;
+    transition: opacity 0.2s;
+}
+
+.header-icons a:hover {
+    opacity: 0.75;
+}
+
+.header-icons a i,
+.header-icons a .fa,
+.header-icons a .fas,
+.header-icons a .far {
+    color: #ffffff !important;
+    font-size: 18px;
+}
+
+.welcome-text {
+    color: #ffffff !important;
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+}

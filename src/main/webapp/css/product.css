@@ -1,0 +1,113 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Jost:wght@300;400;500&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #FAF0E6;
+    font-family: 'Jost', sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.page-title {
+    text-align: center;
+    padding: 40px 20px 10px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 300;
+    color: #3A2A20;
+    letter-spacing: 4px;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    padding: 30px 50px 50px;
+}
+
+.card {
+    background-color: white;
+    border: 1px solid #E8D5C8;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(160, 82, 45, 0.12);
+}
+
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}
+
+.card-info {
+    padding: 16px;
+}
+
+.name {
+    font-size: 14px;
+    font-weight: 500;
+    color: #3B1F0E;
+    margin-bottom: 6px;
+}
+
+.price {
+    font-size: 14px;
+    color: #A0522D;
+    font-weight: 600;
+    margin-bottom: 14px;
+}
+
+.card-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-cart {
+    flex: 1;
+    padding: 10px;
+    background-color: #7B3F1A;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    font-family: 'Jost', sans-serif;
+    letter-spacing: 1px;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    transition: background 0.2s;
+}
+
+.btn-cart:hover {
+    background-color: #5C2E0E;
+}
+
+.btn-wish {
+    padding: 10px 14px;
+    background-color: #fff0f0;
+    color: #cc3333;
+    border: 1.5px solid #cc3333;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-wish:hover {
+    background-color: #cc3333;
+    color: white;
+}
