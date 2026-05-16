@@ -1,8 +1,8 @@
 package com.lumiere.controller;
-import com.lumiere.dao.UserDAO;
+
 import com.lumiere.model.UserModel;
+import com.lumiere.service.LoginService;
 import com.lumiere.utils.CookieUtil;
-import com.lumiere.utils.PasswordUtil;
 import com.lumiere.utils.SessionUtil;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -17,11 +17,13 @@ import java.time.format.DateTimeFormatter;
 public class LoginServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+            throws ServletException, IOException {
         request.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(request, response);
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+            throws ServletException, IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
@@ -34,10 +36,10 @@ public class LoginServlet extends HttpServlet {
         }
 
         try {
-            UserDAO dao = new UserDAO();
-            UserModel user = dao.getUserByUsername(username);
+            LoginService service = new LoginService();
+            UserModel user = service.login(username, password);
 
-            if (user == null || !PasswordUtil.checkPassword(password, user.getPassword())) {
+            if (user == null) {
                 request.setAttribute("error", "Invalid username or password.");
                 request.setAttribute("typedUser", username);
                 request.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(request, response);
