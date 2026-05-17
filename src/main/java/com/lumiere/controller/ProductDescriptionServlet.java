@@ -62,7 +62,7 @@ public class ProductDescriptionServlet extends HttpServlet {
             }
         }
 
-        // Search engine lookup routine for the matched catalog record
+        // Search engine lookup routine for the matched catalog record.
         ProductItem selectedProduct = null;
         for (ProductItem item : allItems) {
             if (item.getId() == targetId) {
