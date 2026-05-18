@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${product.name} - Lumière</title>
-    <link rel="stylesheet" href="https://googleapis.com">
     <link rel="stylesheet" href="https://cloudflare.com">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/productdescription.css">
 </head>
@@ -38,16 +38,16 @@
     <div class="main-details-section">
         <div class="gallery-column">
             <div class="thumbnails-strip">
-                <label for="img-slot-1" class="thumb-box t-box-1"><img src="${product.image}" alt="View 1"></label>
-                <label for="img-slot-2" class="thumb-box t-box-2"><img src="${product.image}" alt="View 2"></label>
-                <label for="img-slot-3" class="thumb-box t-box-3"><img src="${product.image}" alt="View 3"></label>
-                <label for="img-slot-4" class="thumb-box t-box-4"><img src="${product.image}" alt="View 4"></label>
+                <label for="img-slot-1" class="thumb-box t-box-1"><img src="${product.img1}" alt="View 1"></label>
+                <label for="img-slot-2" class="thumb-box t-box-2"><img src="${product.img2}" alt="View 2"></label>
+                <label for="img-slot-3" class="thumb-box t-box-3"><img src="${product.img3}" alt="View 3"></label>
+                <label for="img-slot-4" class="thumb-box t-box-4"><img src="${product.img4}" alt="View 4"></label>
             </div>
             <div class="main-display-frame">
-                <img src="${product.image}" class="main-view-img view-img-1" alt="${product.alt}">
-                <img src="${product.image}" class="main-view-img view-img-2" alt="${product.alt}">
-                <img src="${product.image}" class="main-view-img view-img-3" alt="${product.alt}">
-                <img src="${product.image}" class="main-view-img view-img-4" alt="${product.alt}">
+                <img src="${product.img1}" class="main-view-img view-img-1" alt="${product.alt}">
+                <img src="${product.img2}" class="main-view-img view-img-2" alt="${product.alt}">
+                <img src="${product.img3}" class="main-view-img view-img-3" alt="${product.alt}">
+                <img src="${product.img4}" class="main-view-img view-img-4" alt="${product.alt}">
             </div>
         </div>
 
@@ -57,18 +57,20 @@
             <p class="meta-line">${product.volume} | hydrating luxury blend</p>
             <p class="rating-stars">${product.stars}</p>
 
-            <div class="option-label">shade: 
-                <span class="shade-txt text-1">cool pink taffy</span>
-                <span class="shade-txt text-2">soft nude apricot</span>
-                <span class="shade-txt text-3">velvet ruby crimson</span>
-                <span class="shade-txt text-4">deep chestnut cocoa</span>
+            <!-- Fixation 3: Dynamic Options Labels -->
+            <div class="option-label">${product.optionLabel}: 
+                <span class="shade-txt text-1">${product.optionName1}</span>
+                <span class="shade-txt text-2">${product.optionName2}</span>
+                <span class="shade-txt text-3">${product.optionName3}</span>
+                <span class="shade-txt text-4">${product.optionName4}</span>
             </div>
 
+            <!-- Fixation 3: Dynamic Swatch Colors -->
             <div class="swatches-row">
-                <label for="shade-1" class="swatch-dot dot-1" style="background-color: #e6ccb2;"></label>
-                <label for="shade-2" class="swatch-dot dot-2" style="background-color: #ddb892;"></label>
-                <label for="shade-3" class="swatch-dot dot-3" style="background-color: #b08968;"></label>
-                <label for="shade-4" class="swatch-dot dot-4" style="background-color: #9c6644;"></label>
+                <label for="shade-1" class="swatch-dot dot-1" style="background-color: ${product.optionStyle1};"></label>
+                <label for="shade-2" class="swatch-dot dot-2" style="background-color: ${product.optionStyle2};"></label>
+                <label for="shade-3" class="swatch-dot dot-3" style="background-color: ${product.optionStyle3};"></label>
+                <label for="shade-4" class="swatch-dot dot-4" style="background-color: ${product.optionStyle4};"></label>
             </div>
 
             <div class="purchase-actions-row">
@@ -93,13 +95,19 @@
                     </div>
                 </div>
 
-                <!-- Form redirects straight to your server side cart handler -->
+                <!-- Fixation 1: Main Product Price Scaling via JSTL Slicing String Math -->
                 <form action="products" method="POST" class="cart-form-container">
                     <input type="hidden" name="productId" value="${product.id}">
                     <button type="submit" class="cart-submit-btn card-p-1">add to cart - ${product.price}</button>
-                    <button type="submit" class="cart-submit-btn card-p-2">add to cart - ${product.price}</button>
-                    <button type="submit" class="cart-submit-btn card-p-3">add to cart - ${product.price}</button>
-                    <button type="submit" class="cart-submit-btn card-p-4">add to cart - ${product.price}</button>
+                    <button type="submit" class="cart-submit-btn card-p-2">
+                        add to cart - Rs. ${(fn:replace(fn:substring(product.price, 4, fn:length(product.price)), ',', '')) * 2}
+                    </button>
+                    <button type="submit" class="cart-submit-btn card-p-3">
+                        add to cart - Rs. ${(fn:replace(fn:substring(product.price, 4, fn:length(product.price)), ',', '')) * 3}
+                    </button>
+                    <button type="submit" class="cart-submit-btn card-p-4">
+                        add to cart - Rs. ${(fn:replace(fn:substring(product.price, 4, fn:length(product.price)), ',', '')) * 4}
+                    </button>
                 </form>
             </div>
 
@@ -115,67 +123,64 @@
                 <div class="accordion-panel">Enriched with Organic Coconut Water Extract, Vegetable Glycerin, Hyaluronic Acid, Rosewater Distillate, and Botanical Mineral Colorants.</div>
             </div>
 
+            <!-- Fixation 2: Fixed Sparkles and Added 5th Limited Edition Circular Badge -->
             <div class="badges-flex-container">
                 <div class="badge-unit"><div class="badge-ring"><i class="fas fa-leaf"></i></div><p class="badge-caption">vegan</p></div>
                 <div class="badge-unit"><div class="badge-ring"><i class="fas fa-paw"></i></div><p class="badge-caption">cruelty free</p></div>
-                <div class="badge-unit"><div class="badge-ring"><i class="fas fa-sparkles"></i></div><p class="badge-caption">clean</p></div>
-                <div class="badge-unit"><div class="badge-ring"><i class="fas fa-shield-halved"></i></div><p class="badge-caption">paraben free</p></div>
+                <div class="badge-unit"><div class="badge-ring"><i class="fas fa-star"></i></div><p class="badge-caption">clean</p></div>
+                <div class="badge-unit"><div class="badge-ring"><i class="fas fa-prescription-bottle-medical"></i></div><p class="badge-caption">paraben free</p></div>
+                <div class="badge-unit"><div class="badge-ring"><i class="fas fa-clock"></i></div><p class="badge-caption">limited-edition</p></div>
             </div>
         </div>
     </div>
 
-    <!-- PROMOTIONAL BRAND EDITORIAL BANNER ROW -->
+    <!-- Fixation 4: Unique Custom Editorial Quotes and Usage Guides -->
     <div class="editorial-banner-grid">
         <div class="promo-editorial-card">
             <span class="brand-tag-note">from lumiere</span>
-            <h2 class="editorial-quote-text">MY GO-TO FOR A COMFORTABLE STAINED LOOK</h2>
-            <img src="${product.image}" alt="Lifestyle Frame">
+            <h2 class="editorial-quote-text">${product.editorialQuote}</h2>
+            <img src="${product.img5}" alt="Lifestyle Frame">
         </div>
         <div class="instructional-use-card">
             <h3 class="use-guide-heading">how to use</h3>
             <div class="use-images-split">
-                <img src="${product.image}" alt="Use 1">
-                <img src="${product.image}" alt="Use 2">
+                <img src="${product.img6}" alt="Use 1">
+                <img src="${product.img7}" alt="Use 2">
             </div>
-            <p class="use-instruction-paragraph">Apply directly onto skin surfaces or lips utilizing precise smooth strokes for instant luxurious coverage. Wear alone for a sheer natural finish or layer to build custom statement pigmentation intensity.</p>
+            <p class="use-instruction-paragraph">${product.useInstruction}</p>
         </div>
     </div>
 
-    <!-- "WHY WE LOVE IT" MODULE -->
+    <!-- Fixation 4: Unique Custom Why We Love It Features Matrices -->
     <div class="editorial-banner-grid">
         <div class="why-love-card">
             <h3 class="use-guide-heading" style="margin-bottom:24px;">why we love it</h3>
-            <p class="love-feature-title">kiss-proof, buildable color</p>
-            <p class="love-feature-body">smudge-resistant finish that feels lightweight and comfortable all day.</p>
-            <p class="love-feature-title">up to 24-hour moisture</p>
-            <p class="love-feature-body">doesn't leave skin or lips feeling tight, cakey, or dry.</p>
-            <p class="love-feature-title">made with coconut water & glycerin</p>
-            <p class="love-feature-body">delivers a burst of refreshing, vital hydration with every application.</p>
+            <p class="love-feature-title">${product.fTitle1}</p>
+            <p class="love-feature-body">${product.fBody1}</p>
+            <p class="love-feature-title">${product.fTitle2}</p>
+            <p class="love-feature-body">${product.fBody2}</p>
+            <p class="love-feature-title">${product.fTitle3}</p>
+            <p class="love-feature-body">${product.fBody3}</p>
         </div>
-        <div class="why-love-visual"><img src="${product.image}" alt="Family Frame"></div>
+        <div class="why-love-visual"><img src="${product.img8}" alt="Family Frame"></div>
     </div>
 
-    <!-- RECOMMENDATION BAR SYSTEM WITH INTEGRATED SERVER CAROUSEL SLIDER LINK -->
+    <!-- Fixation 5: Clean Recommendations Container (Removed Pagination Slider Page Dots) -->
     <div class="recommendations-carousel-header">
         <h2>YOU MAY ALSO LIKE</h2>
-        <div class="carousel-pagination-dots">
-            <c:forEach var="dot" begin="1" end="${totalRecPages}">
-                <a href="?id=${product.id}&recPage=${dot}" class="carousel-dot ${dot == currentRecPage ? 'active' : ''}"></a>
-            </c:forEach>
-        </div>
     </div>
 
-    <!-- HOVER CAROUSEL PRODUCTS GRID MATRIX -->
+    <!-- Fixation 5: Clickable Recommendation Grid Items containing Hover Drawer Actions -->
     <div class="recommendations-flex-row">
         <c:forEach var="rec" items="${recommendations}">
             <div class="rec-item-card">
-                <!-- Inner variables to isolate specific sub counter scopes -->
                 <input type="radio" name="rec-qty-group-${rec.id}" id="rec-qty-${rec.id}-1" class="rec-radio rec-r-1" checked>
                 <input type="radio" name="rec-qty-group-${rec.id}" id="rec-qty-${rec.id}-2" class="rec-radio rec-r-2">
                 <input type="radio" name="rec-qty-group-${rec.id}" id="rec-qty-${rec.id}-3" class="rec-radio rec-r-3">
 
                 <div class="rec-image-holder">
                     <span class="rec-badge-tag">new collection</span>
+                    <!-- Clickable Redirect Link Trigger Anchor -->
                     <a href="productdescription?id=${rec.id}"><img src="${rec.image}" alt="${rec.alt}"></a>
                 </div>
                 <div class="rec-card-meta">
@@ -184,7 +189,7 @@
                     <p class="rec-price">${rec.price}</p>
                 </div>
 
-                <!-- SLIDE UP ACTIVE INTERACTION DRAWER -->
+                <!-- SLIDE UP ACTIVE HOVER MENU OVERLAY DRAWER WITH PRICE MULTIPLICATION ENGINE -->
                 <div class="rec-card-overlay">
                     <div class="rec-qty-container">
                         <div class="rec-btn-stack">
@@ -206,8 +211,12 @@
                     <form action="products" method="POST" style="flex:1; display:flex;">
                         <input type="hidden" name="productId" value="${rec.id}">
                         <button type="submit" class="rec-cart-btn r-tag-1">add to cart - ${rec.price}</button>
-                        <button type="submit" class="rec-cart-btn r-tag-2">add to cart - ${rec.price}</button>
-                        <button type="submit" class="rec-cart-btn r-tag-3">add to cart - ${rec.price}</button>
+                        <button type="submit" class="rec-cart-btn r-tag-2">
+                            add to cart - Rs. ${(fn:replace(fn:substring(rec.price, 4, fn:length(rec.price)), ',', '')) * 2}
+                        </button>
+                        <button type="submit" class="rec-cart-btn r-tag-3">
+                            add to cart - Rs. ${(fn:replace(fn:substring(rec.price, 4, fn:length(rec.price)), ',', '')) * 3}
+                        </button>
                     </form>
                 </div>
             </div>

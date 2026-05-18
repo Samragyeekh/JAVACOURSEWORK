@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -79,11 +80,20 @@
                 <form action="products" method="POST" class="cart-form-container">
                     <input type="hidden" name="productId" value="${p.id}">
                     
-                    <!-- Clean, unified price tags targeting each radio toggle variant state -->
+                    <!-- Clean, unified price tags using JSTL string parsing math engine operations -->
                     <button type="submit" class="btn-cart price-tag-1">add to cart - ${p.price}</button>
-                    <button type="submit" class="btn-cart price-tag-2">add to cart - ${p.price}</button>
-                    <button type="submit" class="btn-cart price-tag-3">add to cart - ${p.price}</button>
-                    <button type="submit" class="btn-cart price-tag-4">add to cart - ${p.price}</button>
+                    
+                    <button type="submit" class="btn-cart price-tag-2">
+                        add to cart - Rs. ${(fn:replace(fn:substring(p.price, 4, fn:length(p.price)), ',', '')) * 2}
+                    </button>
+                    
+                    <button type="submit" class="btn-cart price-tag-3">
+                        add to cart - Rs. ${(fn:replace(fn:substring(p.price, 4, fn:length(p.price)), ',', '')) * 3}
+                    </button>
+                    
+                    <button type="submit" class="btn-cart price-tag-4">
+                        add to cart - Rs. ${(fn:replace(fn:substring(p.price, 4, fn:length(p.price)), ',', '')) * 4}
+                    </button>
                 </form>
             </div>
         </div>

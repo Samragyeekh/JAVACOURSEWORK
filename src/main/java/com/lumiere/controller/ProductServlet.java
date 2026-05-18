@@ -98,6 +98,7 @@ public class ProductServlet extends HttpServlet {
         // Forward control processing directly to the layout view
         request.getRequestDispatcher("/WEB-INF/pages/product.jsp").forward(request, response);
     }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
@@ -115,5 +116,4 @@ public class ProductServlet extends HttpServlet {
         // Rerun the data display fetch processing loop so screen templates render natively
         doGet(request, response);
     }
-
 }

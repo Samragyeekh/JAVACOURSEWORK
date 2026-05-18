@@ -126,6 +126,7 @@ body {
     color: #7f5539;
     font-weight: 600;
     margin-bottom: 12px;
+    text-transform: uppercase;
 }
 
 .shade-txt { display: none; }
@@ -246,9 +247,9 @@ body {
 .accordion-header { display: flex; justify-content: space-between; align-items: center; font-size: 14px; font-weight: 600; color: #7f5539; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; }
 .accordion-panel { max-height: 0; overflow: hidden; transition: max-height 0.25s ease-out, padding 0.2s ease; font-size: 13px; line-height: 1.6; color: #b08968; }
 
-.accordion-header .icon-state::before { content: "\f067"; }
+.accordion-header .icon-state::before { content: "\f067"; font-family: "Font Awesome 5 Free"; font-weight: 900; }
 .accordion-toggle-input:checked ~ .accordion-panel { max-height: 200px; padding-top: 12px; }
-.accordion-toggle-input:checked ~ .accordion-header .icon-state::before { content: "\f068"; }
+.accordion-toggle-input:checked ~ .accordion-header .icon-state::before { content: "\f068"; font-family: "Font Awesome 5 Free"; font-weight: 900; }
 
 /* CIRCULAR ACCREDITATION ICONS */
 .badges-flex-container { display: flex; gap: 20px; padding-top: 24px; border-top: 1px solid #e6ccb2; margin-top: 10px; }
@@ -274,10 +275,6 @@ body {
 /* FOOTER "YOU MAY ALSO LIKE" MODULES ROW */
 .recommendations-carousel-header { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #e6ccb2; padding-top: 40px; margin-bottom: 20px; }
 .recommendations-carousel-header h2 { font-size: 18px; color: #7f5539; letter-spacing: 1px; }
-.carousel-pagination-dots { display: flex; gap: 6px; }
-.carousel-pagination-dots a { text-decoration: none; display: inline-block; }
-.carousel-dot { width: 6px; height: 6px; background-color: #e6ccb2; border-radius: 50%; }
-.carousel-dot.active { background-color: #7f5539; }
 
 .recommendations-flex-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
 
@@ -291,6 +288,57 @@ body {
 .rec-stars { color: #ddb892; font-size: 11px; margin-bottom: 4px; }
 .rec-title { font-size: 13px; font-weight: 600; color: #7f5539; margin-bottom: 4px; }
 .rec-price { font-size: 13px; color: #9c6644; }
+
+/* RECOMMENDATION QUANTITY CONTAINER */
+.rec-qty-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #7f5539;
+    border-radius: 4px;
+    width: 85px;
+    height: 42px;
+    background: #ffffff;
+    position: relative;
+    user-select: none;
+}
+
+.rec-btn-stack, .rec-digits-stack {
+    height: 100%;
+    position: relative;
+}
+.rec-btn-stack { width: 26px; }
+.rec-digits-stack { flex: 1; overflow: hidden; }
+
+.rec-lbl, .rec-digit {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: #7f5539;
+    cursor: pointer;
+}
+.rec-digit { font-weight: 600; cursor: default; }
+
+/* DISPLAY DIGITAL SELECTIONS FOR CAROUSEL CARD SCOPES */
+.rec-r-1:checked ~ .rec-card-overlay .r-dig-1,
+.rec-r-2:checked ~ .rec-card-overlay .r-dig-2,
+.rec-r-3:checked ~ .rec-card-overlay .r-dig-3 { display: flex; }
+
+/* HOVER MINUS BUTTON CONDITIONS */
+.rec-r-1:checked ~ .rec-card-overlay .r-down-dis { display: flex; color: #e6ccb2; cursor: not-allowed; }
+.rec-r-2:checked ~ .rec-card-overlay .r-down-to-1 { display: flex; }
+.rec-r-3:checked ~ .rec-card-overlay .r-down-to-2 { display: flex; }
+
+/* HOVER PLUS BUTTON CONDITIONS */
+.rec-r-1:checked ~ .rec-card-overlay .r-up-to-2 { display: flex; }
+.rec-r-2:checked ~ .rec-card-overlay .r-up-to-3 { display: flex; }
+.rec-r-3:checked ~ .rec-card-overlay .r-up-dis { display: flex; color: #e6ccb2; cursor: not-allowed; }
 
 /* HOVER DRAWER OVERLAY SPECIFICS FOR RECOMMENDATION ITEMS */
 .rec-card-overlay {
@@ -306,4 +354,38 @@ body {
     transform: translateY(101%);
     transition: transform 0.25s ease;
     z-index: 5;
-    
+    border-top: 1px solid #ede0d4;
+}
+
+/* HOVER TRIGGERS MATCHING YOUR DYNAMIC REQUIREMENTS */
+.rec-item-card:hover .rec-card-overlay, 
+.rec-item-card:active .rec-card-overlay, 
+.rec-item-card:focus-within .rec-card-overlay {
+    transform: translateY(0);
+}
+
+.rec-cart-btn {
+    display: none;
+    width: 100%;
+    height: 42px;
+    background: #ffffff;
+    color: #7f5539;
+    border: 1px solid #7f5539;
+    border-radius: 4px;
+    font: 600 11px 'Noto Sans', sans-serif;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.rec-cart-btn:hover {
+    background: #7f5539;
+    color: #ede0d4;
+}
+
+/* HOVER PRICE BUTTON TOGGLE MASKS */
+.rec-r-1:checked ~ .rec-card-overlay .r-tag-1,
+.rec-r-2:checked ~ .rec-card-overlay .r-tag-2,
+.rec-r-3:checked ~ .rec-card-overlay .r-tag-3 { 
+    display: block; 
+}
