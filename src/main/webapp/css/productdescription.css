@@ -1,39 +1,46 @@
+
 @charset "UTF-8";
+/* Global resets for consistent layout sizing */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Base page typography and workspace color parameters */
 body {
     background-color: #ede0d4;
     font-family: 'Noto Sans', sans-serif;
 }
 
+/* Layout container centering product display contents */
 .desc-wrapper {
     max-width: 1200px;
     margin: 0 auto;
     padding: 40px 20px;
 }
 
-/* MAIN LAYOUT SIZING ENHANCEMENTS */
+/* Primary segment holding product visual assets and text metadata */
 .main-details-section {
     display: flex;
     gap: 40px;
     margin-bottom: 60px;
 }
 
+/* Structural placement mapping properties for visual layout side */
 .gallery-column {
-    flex: 1.3; /* Scaled larger to allow product imagery to line up beautifully down to your ingredients module bounds */
+    flex: 1.3; 
     display: flex;
     gap: 16px;
 }
 
+/* Typography configuration boundaries handling text layout column */
 .info-column {
     flex: 1;
 }
 
 /* THUMBNAILS CONTAINER */
+/* Aligns the quick view choice controls in a uniform strip structure */
 .thumbnails-strip {
     display: flex;
     flex-direction: column;
@@ -41,6 +48,7 @@ body {
     width: 80px;
 }
 
+/* Interactive bounding containers holding mini preview files */
 .thumb-box {
     width: 80px;
     height: 80px;
@@ -58,9 +66,10 @@ body {
     object-fit: cover;
 }
 
+/* Static viewport dimensions frame for chosen primary view element */
 .main-display-frame {
     flex: 1;
-    height: 640px; /* Taller dimension settings matching Kylie Cosmetics editorial style spacing guidelines */
+    height: 640px; 
     background-color: #ffffff;
     border: 1px solid #e6ccb2;
     border-radius: 4px;
@@ -68,6 +77,7 @@ body {
     position: relative;
 }
 
+/* Sets default state layout properties for layered slideshow entries */
 .main-view-img {
     position: absolute;
     top: 0;
@@ -80,19 +90,22 @@ body {
     z-index: 1;
 }
 
-/* INTERACTION HOOKS: GALLERY SELECTION SWITCH */
+/* Hides default radio inputs to facilitate custom label trigger mechanisms */
 .gallery-radio-trigger { display: none; }
+
+/* Dynamic visibility configuration swapping main product view display files */
 #img-slot-1:checked ~ .main-details-section .view-img-1,
 #img-slot-2:checked ~ .main-details-section .view-img-2,
 #img-slot-3:checked ~ .main-details-section .view-img-3,
 #img-slot-4:checked ~ .main-details-section .view-img-4 { opacity: 1; z-index: 2; }
 
+/* Updates border state parameters on the chosen mini grid selection indices */
 #img-slot-1:checked ~ .main-details-section .t-box-1,
 #img-slot-2:checked ~ .main-details-section .t-box-2,
 #img-slot-3:checked ~ .main-details-section .t-box-3,
 #img-slot-4:checked ~ .main-details-section .t-box-4 { border: 2px solid #7f5539; }
 
-/* TYPOGRAPHY BLOCKS */
+/* Typography styling sets governing categories breadcrumbs lines */
 .breadcrumbs {
     font-size: 12px;
     color: #b08968;
@@ -101,6 +114,7 @@ body {
     margin-bottom: 12px;
 }
 
+/* Size properties tracking main identity title layout elements */
 .item-heading {
     font-size: 28px;
     font-weight: 600;
@@ -120,7 +134,7 @@ body {
     margin-bottom: 24px;
 }
 
-/* SHADE LABELS AND RECTANGLE SWATCH CONTROLS */
+/* Typography styles handling option attributes title flags */
 .option-label {
     font-size: 13px;
     color: #7f5539;
@@ -129,20 +143,24 @@ body {
     text-transform: uppercase;
 }
 
+/* Keeps text nodes collapsed until corresponding selection tags match */
 .shade-txt { display: none; }
 .shade-radio-trigger { display: none; }
 
+/* Unveils precise identity text matching active variant choice index properties */
 #shade-1:checked ~ .main-details-section .text-1,
 #shade-2:checked ~ .main-details-section .text-2,
 #shade-3:checked ~ .main-details-section .text-3,
 #shade-4:checked ~ .main-details-section .text-4 { display: inline-block; color: #b08968; font-weight: 400; margin-left: 4px; }
 
+/* Horizontal container stacking structural cosmetic shade elements */
 .swatches-row {
     display: flex;
     gap: 12px;
     margin-bottom: 30px;
 }
 
+/* Circular variant select dot markers geometric definitions */
 .swatch-dot {
     width: 28px;
     height: 28px;
@@ -152,13 +170,13 @@ body {
     transition: all 0.2s ease;
 }
 
-/* SELECTION RING EFFECT MATCHING YOUR SCREENSHOT */
+/* Highlights active circular selection parameters using concentric ring shadows */
 #shade-1:checked ~ .main-details-section .dot-1,
 #shade-2:checked ~ .main-details-section .dot-2,
 #shade-3:checked ~ .main-details-section .dot-3,
 #shade-4:checked ~ .main-details-section .dot-4 { box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #7f5539; }
 
-/* QUANTITY SYSTEM STEPPER LAYOUT PACKING */
+/* Structural layout parameters for item purchasing checkout components */
 .purchase-actions-row {
     display: flex;
     gap: 12px;
@@ -167,6 +185,7 @@ body {
 
 .desc-qty-radio { display: none; }
 
+/* Component holding increment controls and item index values */
 .qty-stepper-container {
     display: flex;
     align-items: center;
@@ -180,10 +199,12 @@ body {
     user-select: none;
 }
 
+/* Structural placement blocks within description counting modules */
 .minus-btn-stack, .plus-btn-stack, .digits-view-stack { height: 100%; position: relative; }
 .minus-btn-stack, .plus-btn-stack { width: 32px; }
 .digits-view-stack { flex: 1; overflow: hidden; }
 
+/* Common layout traits for numerical displays and interactive labels */
 .step-lbl, .count-digit {
     position: absolute;
     top: 0;
@@ -200,32 +221,35 @@ body {
 
 .count-digit { font-weight: 600; font-size: 13px; cursor: default; }
 
-/* ACTIVE DIGITS CONTROL INDEXES */
+/* Swaps visible digit labels depending on matching contextual checkbox state inputs */
 .d-qty-r-1:checked ~ .main-details-section .digit-1,
 .d-qty-r-2:checked ~ .main-details-section .digit-2,
 .d-qty-r-3:checked ~ .main-details-section .digit-3,
 .d-qty-r-4:checked ~ .main-details-section .digit-4 { display: flex; }
 
-/* STEPPER INTERACTIVE MINUS OVERLAYS */
+/* Decrement logic configurations setting up bounds control handling locks */
 .d-qty-r-1:checked ~ .main-details-section .l-down-disabled { display: flex; color: #e6ccb2; cursor: not-allowed; }
 .d-qty-r-2:checked ~ .main-details-section .l-down-to-1 { display: flex; }
 .d-qty-r-3:checked ~ .main-details-section .l-down-to-2 { display: flex; }
 .d-qty-r-4:checked ~ .main-details-section .l-down-to-3 { display: flex; }
 
-/* STEPPER INTERACTIVE PLUS OVERLAYS */
+/* Increment logic configurations tracking target index modification triggers */
 .d-qty-r-1:checked ~ .main-details-section .l-up-to-2 { display: flex; }
 .d-qty-r-2:checked ~ .main-details-section .l-up-to-3 { display: flex; }
 .d-qty-r-3:checked ~ .main-details-section .l-up-to-4 { display: flex; }
 .d-qty-r-4:checked ~ .main-details-section .l-up-disabled { display: flex; color: #e6ccb2; cursor: not-allowed; }
 
+/* Binds internal layout flow blocks within checkout action fields */
 .cart-form-container { flex: 1; display: flex; }
 .cart-submit-btn { display: none; width: 100%; height: 46px; }
 
+/* Dynamically renders the submit button matching precise checkout metrics */
 .d-qty-r-1:checked ~ .main-details-section .card-p-1,
 .d-qty-r-2:checked ~ .main-details-section .card-p-2,
 .d-qty-r-3:checked ~ .main-details-section .card-p-3,
 .d-qty-r-4:checked ~ .main-details-section .card-p-4 { display: block; }
 
+/* Core design styles detailing primary checkout action elements */
 .cart-submit-btn {
     background-color: #ffffff;
     color: #7f5539;
@@ -241,23 +265,26 @@ body {
 
 .cart-submit-btn:hover { background-color: #7f5539; color: #ede0d4; }
 
-/* INFOGRAPHIC COLLAPSIBLE BLOCKS */
+/* Collapsible description details section parameters layout properties */
 .accordion-item { border-top: 1px solid #e6ccb2; padding: 16px 0; }
 .accordion-toggle-input { display: none; }
 .accordion-header { display: flex; justify-content: space-between; align-items: center; font-size: 14px; font-weight: 600; color: #7f5539; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; }
 .accordion-panel { max-height: 0; overflow: hidden; transition: max-height 0.25s ease-out, padding 0.2s ease; font-size: 13px; line-height: 1.6; color: #b08968; }
 
+/* Injects vector glyph components handling accordion icon state switches */
 .accordion-header .icon-state::before { content: "\f067"; font-family: "Font Awesome 5 Free"; font-weight: 900; }
+/* Expands target pane blocks when context input markers trigger active */
 .accordion-toggle-input:checked ~ .accordion-panel { max-height: 200px; padding-top: 12px; }
+/* Rotates internal validation character icons dynamically via pseudo selectors */
 .accordion-toggle-input:checked ~ .accordion-header .icon-state::before { content: "\f068"; font-family: "Font Awesome 5 Free"; font-weight: 900; }
 
-/* CIRCULAR ACCREDITATION ICONS */
+/* Trust signals badges layout container rows formatting context settings */
 .badges-flex-container { display: flex; gap: 20px; padding-top: 24px; border-top: 1px solid #e6ccb2; margin-top: 10px; }
 .badge-unit { display: flex; flex-direction: column; align-items: center; flex: 1; }
 .badge-ring { width: 50px; height: 50px; border: 1px solid #b08968; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #7f5539; font-size: 16px; margin-bottom: 8px; background-color: #ffffff; }
 .badge-caption { font-size: 11px; color: #7f5539; text-align: center; }
 
-/* RECTANGLE EDITORIAL CONTENT CARDS */
+/* Editorial promotional section split grid definitions spacing maps */
 .editorial-banner-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 40px; }
 .promo-editorial-card, .instructional-use-card, .why-love-card, .why-love-visual { background-color: #ffffff; border: 1px solid #e6ccb2; border-radius: 4px; padding: 24px; position: relative; overflow: hidden; }
 .why-love-visual { padding: 0; }
@@ -272,13 +299,14 @@ body {
 .love-feature-title { font-size: 14px; font-weight: 600; color: #7f5539; margin-top: 14px; margin-bottom: 4px; }
 .love-feature-title:first-of-type { margin-top: 0; }
 
-/* FOOTER "YOU MAY ALSO LIKE" MODULES ROW */
+/* Product recommendations listing section divider labels styles */
 .recommendations-carousel-header { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #e6ccb2; padding-top: 40px; margin-bottom: 20px; }
 .recommendations-carousel-header h2 { font-size: 18px; color: #7f5539; letter-spacing: 1px; }
 
+/* Four-column system grid block rendering item suggestions */
 .recommendations-flex-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
 
-/* INDEPENDENT REC HOVER PANEL ARCHITECTURE RULES */
+/* Individual suggestion items structure layout modules metrics settings */
 .rec-item-card { background-color: #ffffff; border: 1px solid #e6ccb2; border-radius: 4px; overflow: hidden; position: relative; }
 .rec-radio { display: none; }
 .rec-image-holder { position: relative; height: 240px; background-color: #fcfbfa; }
@@ -289,7 +317,7 @@ body {
 .rec-title { font-size: 13px; font-weight: 600; color: #7f5539; margin-bottom: 4px; }
 .rec-price { font-size: 13px; color: #9c6644; }
 
-/* RECOMMENDATION QUANTITY CONTAINER */
+/* Inline item adjustments block tracking recommendation loops counters */
 .rec-qty-container {
     display: flex;
     align-items: center;
@@ -303,6 +331,7 @@ body {
     user-select: none;
 }
 
+/* Sizing configurations inside suggested listings count selectors */
 .rec-btn-stack, .rec-digits-stack {
     height: 100%;
     position: relative;
@@ -310,6 +339,7 @@ body {
 .rec-btn-stack { width: 26px; }
 .rec-digits-stack { flex: 1; overflow: hidden; }
 
+/* Layer alignments property configurations mapping recommendation indices */
 .rec-lbl, .rec-digit {
     position: absolute;
     top: 0;
@@ -325,22 +355,22 @@ body {
 }
 .rec-digit { font-weight: 600; cursor: default; }
 
-/* DISPLAY DIGITAL SELECTIONS FOR CAROUSEL CARD SCOPES */
+/* Selects exact numerical item counts for rendering inside the sliding panel grid */
 .rec-r-1:checked ~ .rec-card-overlay .r-dig-1,
 .rec-r-2:checked ~ .rec-card-overlay .r-dig-2,
 .rec-r-3:checked ~ .rec-card-overlay .r-dig-3 { display: flex; }
 
-/* HOVER MINUS BUTTON CONDITIONS */
+/* Handles lower limit structural disables inside sub-carousel loops */
 .rec-r-1:checked ~ .rec-card-overlay .r-down-dis { display: flex; color: #e6ccb2; cursor: not-allowed; }
 .rec-r-2:checked ~ .rec-card-overlay .r-down-to-1 { display: flex; }
 .rec-r-3:checked ~ .rec-card-overlay .r-down-to-2 { display: flex; }
 
-/* HOVER PLUS BUTTON CONDITIONS */
+/* Handles upper limit structural boundaries locking item index expansions */
 .rec-r-1:checked ~ .rec-card-overlay .r-up-to-2 { display: flex; }
 .rec-r-2:checked ~ .rec-card-overlay .r-up-to-3 { display: flex; }
 .rec-r-3:checked ~ .rec-card-overlay .r-up-dis { display: flex; color: #e6ccb2; cursor: not-allowed; }
 
-/* HOVER DRAWER OVERLAY SPECIFICS FOR RECOMMENDATION ITEMS */
+/* Hidden interaction overlay card pulled up on product selection focus states */
 .rec-card-overlay {
     position: absolute;
     bottom: 0;
@@ -357,13 +387,14 @@ body {
     border-top: 1px solid #ede0d4;
 }
 
-/* HOVER TRIGGERS MATCHING YOUR DYNAMIC REQUIREMENTS */
+/* Elevates card actions into preview bounds when pointer activity triggers hover */
 .rec-item-card:hover .rec-card-overlay, 
 .rec-item-card:active .rec-card-overlay, 
 .rec-item-card:focus-within .rec-card-overlay {
     transform: translateY(0);
 }
 
+/* Core action submit controls used inside recommended layouts modules */
 .rec-cart-btn {
     display: none;
     width: 100%;
@@ -383,7 +414,7 @@ body {
     color: #ede0d4;
 }
 
-/* HOVER PRICE BUTTON TOGGLE MASKS */
+/* Unveils precise carousel button layouts mapping back to tracking items variable hooks */
 .rec-r-1:checked ~ .rec-card-overlay .r-tag-1,
 .rec-r-2:checked ~ .rec-card-overlay .r-tag-2,
 .rec-r-3:checked ~ .rec-card-overlay .r-tag-3 { 
