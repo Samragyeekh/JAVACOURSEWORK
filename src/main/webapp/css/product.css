@@ -1,13 +1,10 @@
-
 @charset "UTF-8";
-/* Global resets for consistent layout sizing */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Base application background and layout viewport constraints */
 body {
     display: flex;
     flex-direction: column;
@@ -16,7 +13,6 @@ body {
     font-family: 'Noto Sans', sans-serif;
 }
 
-/* Page title typography and letter formatting */
 .page-title {
     text-align: center;
     padding: 40px 20px 20px;
@@ -26,7 +22,6 @@ body {
     letter-spacing: 3px;
 }
 
-/* Layout container for uniform product item placement */
 .products-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -34,7 +29,6 @@ body {
     padding: 20px 40px 40px;
 }
 
-/* Base product card design structural bounding container */
 .card {
     background-color: #ffffff;
     border: 1px solid #e6ccb2;
@@ -44,12 +38,10 @@ body {
     transition: box-shadow 0.25s ease;
 }
 
-/* Interactive elevation styling when product card is focused */
 .card:hover {
     box-shadow: 0 8px 24px rgba(127, 85, 57, 0.12);
 }
 
-/* Uniform clipping constraints for catalog grid images */
 .card img {
     width: 100%;
     height: 300px;
@@ -58,13 +50,11 @@ body {
     background-color: #fcfbfa;
 }
 
-/* Detail container inside product layout module */
 .card-info {
     padding: 16px;
     background-color: #ffffff;
 }
 
-/* Rating component alignment attributes */
 .stars {
     color: #ddb892;
     font-size: 11px;
@@ -72,7 +62,6 @@ body {
     margin-bottom: 8px;
 }
 
-/* Space optimization alignment rules for details section */
 .card-row {
     display: flex;
     justify-content: space-between;
@@ -80,14 +69,12 @@ body {
     gap: 12px;
 }
 
-/* Stacks product information text vertically */
 .text-group {
     display: flex;
     flex-direction: column;
     gap: 2px;
 }
 
-/* Typography styles for labels and localized costs */
 .name, .price {
     font-size: 14px;
     font-weight: 600;
@@ -101,7 +88,6 @@ body {
 .price { color: #9c6644; }
 
 /* FLOATING HEART ICON */
-/* Hides default checkbox markup to allow for button element overlays */
 .wish-toggle { display: none; }
 .btn-wish {
     position: absolute;
@@ -121,14 +107,12 @@ body {
     transition: all 0.2s ease;
     box-shadow: 0 2px 6px rgba(0,0,0,0.05);
 }
-/* Keeps the visual element highlighted when checked or hovered */
 .btn-wish:hover, .wish-toggle:checked + .btn-wish {
     color: #7f5539;
     background: #ffffff;
 }
 
 /* OVERLAY DRAWER PANEL ANIMATION BASE */
-/* Hides interactive panels down below the bounding perimeter of the card */
 .card-overlay {
     position: absolute;
     bottom: 0;
@@ -145,18 +129,15 @@ body {
     border-top: 1px solid #ede0d4;
 }
 
-/* Pulls the interactive interaction block into view on card activity */
 .card:hover .card-overlay, .card:active .card-overlay, .card:focus-within .card-overlay {
     transform: translateY(0);
 }
 
 /* PURE CSS TACTILE - 1 + STEPPER ENGINE SHEET */
-/* Disables standard native display configuration blocks */
 .qty-radio {
     display: none;
 }
 
-/* Aligns the inline quantities box components neatly */
 .qty-stepper-container {
     display: flex;
     align-items: center;
@@ -170,7 +151,6 @@ body {
     user-select: none;
 }
 
-/* Structural placement fields within item counting modules */
 .minus-btn-stack, .plus-btn-stack, .digits-view-stack {
     height: 100%;
     position: relative;
@@ -179,7 +159,6 @@ body {
 .minus-btn-stack, .plus-btn-stack { width: 30px; }
 .digits-view-stack { flex: 1; overflow: hidden; }
 
-/* Structural layer configuration variables for inline increments */
 .step-lbl, .count-digit {
     position: absolute;
     top: 0;
@@ -201,21 +180,18 @@ body {
 }
 
 /* DISPLAY DIGIT VARIATIONS BASED ON RADIO STATUS */
-/* Determines correct matching visible label via contextual selector targets */
 .qty-r-1:checked ~ .card-overlay .digit-1,
 .qty-r-2:checked ~ .card-overlay .digit-2,
 .qty-r-3:checked ~ .card-overlay .digit-3,
 .qty-r-4:checked ~ .card-overlay .digit-4 { display: flex; }
 
 /* MINUS BUTTON CONFIGURATIONS */
-/* Manages fallback state behavior when index drops below minimal limit */
 .qty-r-1:checked ~ .card-overlay .l-down-disabled { display: flex; color: #e6ccb2; cursor: not-allowed; }
 .qty-r-2:checked ~ .card-overlay .l-down-to-1 { display: flex; }
 .qty-r-3:checked ~ .card-overlay .l-down-to-2 { display: flex; }
 .qty-r-4:checked ~ .card-overlay .l-down-to-3 { display: flex; }
 
 /* PLUS BUTTON CONFIGURATIONS */
-/* Manages state limits when index values hit upper maximum bounds */
 .qty-r-1:checked ~ .card-overlay .l-up-to-2 { display: flex; }
 .qty-r-2:checked ~ .card-overlay .l-up-to-3 { display: flex; }
 .qty-r-3:checked ~ .card-overlay .l-up-to-4 { display: flex; }
@@ -225,13 +201,11 @@ body {
 .cart-form-container { flex: 1; display: flex; }
 .btn-cart { display: none; width: 100%; }
 
-/* Unveils precise submittal targets correlating to tracking variables */
 .qty-r-1:checked ~ .card-overlay .price-tag-1,
 .qty-r-2:checked ~ .card-overlay .price-tag-2,
 .qty-r-3:checked ~ .card-overlay .price-tag-3,
 .qty-r-4:checked ~ .card-overlay .price-tag-4 { display: block; }
 
-/* Core interaction layout properties for items button submit mechanisms */
 .btn-cart {
     height: 42px;
     background: #ffffff;
@@ -251,7 +225,6 @@ body {
 }
 
 /* PAGINATION INTERFACES */
-/* Layout structure constraints handling list controls container */
 .pagination-container {
     display: flex;
     justify-content: center;
@@ -260,7 +233,6 @@ body {
     background-color: #ede0d4;
 }
 
-/* Unified styling box background attributes handling controls link layout */
 .pagination-bar {
     display: flex;
     align-items: center;
@@ -273,7 +245,6 @@ body {
 
 .pagination-bar a { text-decoration: none; }
 
-/* Sizing configurations for page identification button icons */
 .page-num {
     font-size: 15px;
     font-weight: 600;
@@ -293,14 +264,12 @@ body {
     color: #7f5539;
 }
 
-/* Focus color assignment handling modern active markers navigation path highlights */
 .page-num.active {
     background-color: #7f5539;
     color: #ede0d4;
     box-shadow: 0 3px 8px rgba(127, 85, 57, 0.3);
 }
 
-/* Sizing rules governing vector glyph paths orientation arrows */
 .nav-arrow {
     font-size: 14px;
     color: #ddb892;
@@ -311,7 +280,6 @@ body {
     cursor: pointer;
 }
 
-/* Visual behaviors adjusting clickable properties on state switches */
 .nav-arrow:hover:not(.disabled) { color: #7f5539; }
 .nav-arrow.disabled {
     color: #e6ccb2;
@@ -320,7 +288,6 @@ body {
 }
 
 /* MODAL BACKGROUND BLUR POPUPS */
-/* Backdrop layer setting up dark backdrop block filtering effects */
 .modal-backdrop-overlay {
     position: fixed;
     top: 0;
@@ -335,7 +302,6 @@ body {
     z-index: 1000;
 }
 
-/* Inner block component handling popup dimensions layout settings */
 .popup-modal-box {
     background: #ffffff;
     border: 1px solid #e6ccb2;
@@ -347,7 +313,6 @@ body {
     animation: scalePopIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-/* Decorative validation rings icon container borders geometric configuration */
 .modal-icon-ring {
     width: 56px;
     height: 56px;
@@ -361,14 +326,12 @@ body {
     margin: 0 auto 16px;
 }
 
-/* Inner header content component color constraints rules settings */
 .popup-modal-box h3 {
     font-size: 18px;
     color: #7f5539;
     margin-bottom: 8px;
 }
 
-/* Body context typography setups for message descriptions layers */
 .popup-modal-box p {
     font-size: 13px;
     color: #b08968;
@@ -376,7 +339,6 @@ body {
     margin-bottom: 24px;
 }
 
-/* Action targets design settings formatting context for confirmation click anchors */
 .modal-close-btn {
     display: block;
     width: 100%;
@@ -395,7 +357,6 @@ body {
     background-color: #9c6644;
 }
 
-/* Keyframes setting up entering interpolation scaling parameters */
 @keyframes scalePopIn {
     from { transform: scale(0.8); opacity: 0; }
     to { transform: scale(1); opacity: 1; }

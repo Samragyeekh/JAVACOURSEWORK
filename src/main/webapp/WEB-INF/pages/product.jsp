@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
@@ -8,28 +7,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Products - Lumière</title>
-    <!-- External stylesheet dependencies for fonts and icons -->
     <link rel="stylesheet" href="https://googleapis.com">
     <link rel="stylesheet" href="https://cloudflare.com">
-    <!-- Component-specific styling for the product catalog layout -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/product.css">
 </head>
 <body>
 
-<!-- Dynamic header template reference -->
 <%@ include file="header.jsp" %>
 
 <p class="page-title">ALL PRODUCTS</p>
 
 <div class="products-grid">
-    <!-- Iterates over the requested list of product objects from the controller -->
     <c:forEach var="p" items="${productList}">
         <div class="card">
-            <!-- Wishlist Heart Floating at Top Corner -->
-            <input type="checkbox" class="wish-toggle" id="wish${p.id}">
-            <label class="btn-wish" for="wish${p.id}">
-                <i class="fas fa-heart"></i>
-            </label>
+            <!-- Wishlist Heart Floating at Top Corner with Her Backend Action Router -->
+            <form action="${pageContext.request.contextPath}/wishlist" method="POST" style="margin: 0; padding: 0;">
+                <input type="hidden" name="action" value="add">
+                <input type="hidden" name="productId" value="${p.id}">
+                
+                <input type="checkbox" class="wish-toggle" id="wish${p.id}">
+                <label class="btn-wish" for="wish${p.id}">
+                    <button type="submit" style="background: none; border: none; color: inherit; padding: 0; cursor: pointer;">
+                        <i class="fas fa-heart"></i>
+                    </button>
+                </label>
+            </form>
 
             <!-- PURE CSS HIDDEN COUNTER RADIOS (Per Card Unique Scope) -->
             <input type="radio" name="qty-group-${p.id}" id="qty-${p.id}-1" class="qty-radio qty-r-1" checked>
@@ -37,7 +39,6 @@
             <input type="radio" name="qty-group-${p.id}" id="qty-${p.id}-3" class="qty-radio qty-r-3">
             <input type="radio" name="qty-group-${p.id}" id="qty-${p.id}-4" class="qty-radio qty-r-4">
 
-            <!-- Link to the detailed item description view -->
             <a href="productdescription?id=${p.id}">
                 <img src="${p.image}" alt="${p.alt}">
             </a>
@@ -83,26 +84,48 @@
                     
                 </div>
 
-                <!-- Form handler to post order details to the shopping cart system -->
-                <form action="products" method="POST" class="cart-form-container">
-                    <input type="hidden" name="productId" value="${p.id}">
+                <!-- Clean, unified price tags using Her Cart Actions & Exact Dynamic Quantities -->
+                <div class="cart-form-container">
                     
-                    <!-- Clean, unified price tags using JSTL string parsing math engine operations -->
-                    <button type="submit" class="btn-cart price-tag-1">add to cart - ${p.price}</button>
+                    <!-- Quantity 1 Form -->
+                    <form action="${pageContext.request.contextPath}/cart" method="POST" style="display:inline; width:100%;">
+                        <input type="hidden" name="action" value="add">
+                        <input type="hidden" name="productId" value="${p.id}">
+                        <input type="hidden" name="quantity" value="1">
+                        <button type="submit" class="btn-cart price-tag-1">add to cart - ${p.price}</button>
+                    </form>
                     
-                    <!-- Formats and multiplies price string by stripping currency prefix via substring -->
-                    <button type="submit" class="btn-cart price-tag-2">
-                        add to cart - Rs. ${(fn:replace(fn:substring(p.price, 4, fn:length(p.price)), ',', '')) * 2}
-                    </button>
+                    <!-- Quantity 2 Form -->
+                    <form action="${pageContext.request.contextPath}/cart" method="POST" style="display:inline; width:100%;">
+                        <input type="hidden" name="action" value="add">
+                        <input type="hidden" name="productId" value="${p.id}">
+                        <input type="hidden" name="quantity" value="2">
+                        <button type="submit" class="btn-cart price-tag-2">
+                            add to cart - Rs. ${(fn:replace(fn:substring(p.price, 4, fn:length(p.price)), ',', '')) * 2}
+                        </button>
+                    </form>
                     
-                    <button type="submit" class="btn-cart price-tag-3">
-                        add to cart - Rs. ${(fn:replace(fn:substring(p.price, 4, fn:length(p.price)), ',', '')) * 3}
-                    </button>
+                    <!-- Quantity 3 Form -->
+                    <form action="${pageContext.request.contextPath}/cart" method="POST" style="display:inline; width:100%;">
+                        <input type="hidden" name="action" value="add">
+                        <input type="hidden" name="productId" value="${p.id}">
+                        <input type="hidden" name="quantity" value="3">
+                        <button type="submit" class="btn-cart price-tag-3">
+                            add to cart - Rs. ${(fn:replace(fn:substring(p.price, 4, fn:length(p.price)), ',', '')) * 3}
+                        </button>
+                    </form>
                     
-                    <button type="submit" class="btn-cart price-tag-4">
-                        add to cart - Rs. ${(fn:replace(fn:substring(p.price, 4, fn:length(p.price)), ',', '')) * 4}
-                    </button>
-                </form>
+                    <!-- Quantity 4 Form -->
+                    <form action="${pageContext.request.contextPath}/cart" method="POST" style="display:inline; width:100%;">
+                        <input type="hidden" name="action" value="add">
+                        <input type="hidden" name="productId" value="${p.id}">
+                        <input type="hidden" name="quantity" value="4">
+                        <button type="submit" class="btn-cart price-tag-4">
+                            add to cart - Rs. ${(fn:replace(fn:substring(p.price, 4, fn:length(p.price)), ',', '')) * 4}
+                        </button>
+                    </form>
+
+                </div>
             </div>
         </div>
     </c:forEach>
@@ -111,7 +134,6 @@
 <!-- PAGINATION SYSTEM BAR -->
 <div class="pagination-container">
     <div class="pagination-bar">
-        <!-- Renders previous page navigation link if not on the first page -->
         <c:choose>
             <c:when test="${currentPage > 1}">
                 <a href="?page=${currentPage - 1}" class="nav-arrow"><i class="fas fa-chevron-left"></i></a>
@@ -121,7 +143,6 @@
             </c:otherwise>
         </c:choose>
 
-        <!-- Dynamically builds numerical indexes for total available page count -->
         <c:forEach var="i" begin="1" end="${totalPages}">
             <c:choose>
                 <c:when test="${i == currentPage}">
@@ -133,7 +154,6 @@
             </c:choose>
         </c:forEach>
 
-        <!-- Renders next page navigation link if not on the final page -->
         <c:choose>
             <c:when test="${currentPage < totalPages}">
                 <a href="?page=${currentPage + 1}" class="nav-arrow"><i class="fas fa-chevron-right"></i></a>
@@ -146,7 +166,6 @@
 </div>
 
 <!-- BACKEND MODAL POPUP -->
-<!-- Intercepts confirmation attribute from context to display successful transaction status -->
 <c:if test="${not empty showPopupMessage}">
     <div class="modal-backdrop-overlay">
         <div class="popup-modal-box">
@@ -158,7 +177,6 @@
     </div>
 </c:if>
 
-<!-- Dynamic footer template reference -->
 <%@ include file="footer.jsp" %>
 
 </body>

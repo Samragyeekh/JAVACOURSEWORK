@@ -20,4 +20,6 @@ public class ProductModel {
     public void setPrice(double price) { this.price = price; }
     public int getStock() { return stock; }
     public void setStock(int stock) { this.stock = stock; }
+    public int getQuantity() { return stock; }
+    public void setQuantity(int quantity) { this.stock = quantity; }
 }
