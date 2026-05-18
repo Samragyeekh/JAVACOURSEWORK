@@ -121,7 +121,8 @@ body {
     background: #ffffff;
     padding: 16px;
     display: flex;
-    gap: 10px;
+    gap: 25px;
+    justify-content: space-between;
     align-items: center;
     transform: translateY(101%);
     transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
@@ -198,13 +199,31 @@ body {
 .qty-r-4:checked ~ .card-overlay .l-up-disabled { display: flex; color: #e6ccb2; cursor: not-allowed; }
 
 /* DYNAMIC PRICING BUTTON SELECTORS */
-.cart-form-container { flex: 1; display: flex; }
-.btn-cart { display: none; width: 100%; }
+
+.cart-form-container { 
+    flex: 1; 
+    display: flex; 
+}
+
+.cart-form-container form {
+    display: block !important; 
+    width: 100%;
+}
+
+.btn-cart { 
+    display: none; 
+    width: 100%; 
+    white-space: nowrap;       
+    padding: 0 8px;           
+    box-sizing: border-box;    
+}
 
 .qty-r-1:checked ~ .card-overlay .price-tag-1,
 .qty-r-2:checked ~ .card-overlay .price-tag-2,
 .qty-r-3:checked ~ .card-overlay .price-tag-3,
-.qty-r-4:checked ~ .card-overlay .price-tag-4 { display: block; }
+.qty-r-4:checked ~ .card-overlay .price-tag-4 { 
+    display: block; 
+}
 
 .btn-cart {
     height: 42px;

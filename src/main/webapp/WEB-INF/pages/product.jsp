@@ -84,7 +84,7 @@
                     
                 </div>
 
-                <!-- Clean, unified price tags using Her Cart Actions & Exact Dynamic Quantities -->
+                <!-- Clean, unified price tags using Cart Actions & Exact Dynamic Quantities -->
                 <div class="cart-form-container">
                     
                     <!-- Quantity 1 Form -->
