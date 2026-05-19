@@ -26,21 +26,19 @@
 
     <div class="team-card">
         <div class="team-info">
-                    <a href="${pageContext.request.contextPath}/cv?name=samragyee"  class="name-link">
-        
+            <a href="${pageContext.request.contextPath}/cv?name=samragyee" class="name-link">
                 <h3>Samragyee Khanal</h3>
             </a>
             <div class="role">Head of Product Development</div>
             <p>Samragyee is responsible for formulating and developing new products from concept to completion. She oversees research, design coordination, and product refinement to ensure each offering meets high standards of quality.</p>
         </div>
-        <img class="team-photo" src="${pageContext.request.contextPath}/images/WhatsApp Image 2026-03-28 at 7.13.15 PM.jpeg" alt="Samragyee Khanal"/>
+        <img class="team-photo" src="${pageContext.request.contextPath}/images/WhatsApp Image 2026-03-28 at 7.09.53 PM.jpeg" alt="Samragyee Khanal" style="object-position: top;"/>
     </div>
 
     <div class="team-card">
-        <img class="team-photo" src="${pageContext.request.contextPath}/images/WhatsApp Image 2026-03-28 at 7.09.53 PM.jpeg" alt="Smriti Chand"/>
+        <img class="team-photo" src="${pageContext.request.contextPath}/images/WhatsApp Image 2026-03-28 at 7.13.15 PM.jpeg" alt="Smriti Chand" style="object-position: top;"/>
         <div class="team-info">
-                    <a href="${pageContext.request.contextPath}/cv?name=smriti" class="name-link">
-       
+            <a href="${pageContext.request.contextPath}/cv?name=smriti" class="name-link">
                 <h3>Smriti Chand</h3>
             </a>
             <div class="role">Creative Director</div>
@@ -50,21 +48,18 @@
 
     <div class="team-card">
         <div class="team-info">
-      
-            <a href="${pageContext.request.contextPath}/cv?name=ellie"  class="name-link">
+            <a href="${pageContext.request.contextPath}/cv?name=ellie" class="name-link">
                 <h3>Ellie Shrestha</h3>
             </a>
             <div class="role">Marketing Manager</div>
             <p>Ellie handles advertising campaigns and social media strategy, driving the brand's online presence and engagement. She develops creative marketing initiatives and builds strategies to connect the brand with its target audience.</p>
         </div>
-        <img class="team-photo" src="${pageContext.request.contextPath}/images/WhatsApp Image 2026-03-29 at 12.35.33 AM.jpeg" alt="Ellie Shrestha"/>
+        <img class="team-photo" src="${pageContext.request.contextPath}/images/ellie.jpeg" alt="Ellie Shrestha" style="object-position: top;"/>
     </div>
 
     <div class="team-card">
-        <img class="team-photo" src="${pageContext.request.contextPath}/images/abhishek.jpg" alt="Abhishek Mishra"/>
         <div class="team-info">
-                    <a href="${pageContext.request.contextPath}/cv?name=abhishek" class="name-link">
-        
+            <a href="${pageContext.request.contextPath}/cv?name=abhishek" class="name-link">
                 <h3>Abhishek Mishra</h3>
             </a>
             <div class="role">Sales and Customer Experience Lead</div>
