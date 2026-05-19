@@ -19,6 +19,7 @@
     <div class="header-icons">
         <% if (headerUser != null) { %>
             <span class="welcome-text">Hi, <%= headerUser.getFirstName() %>!</span>
+            <a href="${pageContext.request.contextPath}/profile" title="Profile"><i class="fas fa-user-circle"></i></a>
             <% if ("admin".equals(headerUser.getRole())) { %>
                 <a href="${pageContext.request.contextPath}/dashboard" title="Dashboard"><i class="fas fa-tachometer-alt"></i></a>
             <% } %>

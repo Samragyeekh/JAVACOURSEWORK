@@ -1,12 +1,10 @@
 package com.lumiere.dao;
-
 import com.lumiere.model.UserModel;
 import com.lumiere.utils.DBconfig;
 import com.lumiere.utils.PasswordUtil;
 import java.sql.*;
 
 public class UserDAO {
-
     public boolean registerUser(String firstName, String lastName, String username,
             String email, String password, String phone, String dob, String gender) throws Exception {
         String sql = "INSERT INTO users (first_name, last_name, username, email, password, phone, dob, gender) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
@@ -42,6 +40,7 @@ public class UserDAO {
                 user.setDob(rs.getString("dob"));
                 user.setGender(rs.getString("gender"));
                 user.setRole(rs.getString("role"));
+                user.setProfileImage(rs.getString("profile_image"));
                 return user;
             }
         }
@@ -65,6 +64,22 @@ public class UserDAO {
             ps.setString(1, email);
             ResultSet rs = ps.executeQuery();
             return rs.next();
+        }
+    }
+
+    public boolean updateUser(UserModel user) throws Exception {
+        String sql = "UPDATE users SET first_name=?, last_name=?, email=?, phone=?, dob=?, gender=?, profile_image=? WHERE id=?";
+        try (Connection conn = DBconfig.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, user.getFirstName());
+            ps.setString(2, user.getLastName());
+            ps.setString(3, user.getEmail());
+            ps.setString(4, user.getPhone());
+            ps.setString(5, user.getDob());
+            ps.setString(6, user.getGender());
+            ps.setString(7, user.getProfileImage());
+            ps.setInt(8, user.getId());
+            return ps.executeUpdate() > 0;
         }
     }
 }

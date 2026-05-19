@@ -4,6 +4,7 @@ public class UserModel {
     private int id;
     private String firstName, lastName, username, email, password, phone, gender, role;
     private String dob;
+    private String profileImage;
 
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
@@ -25,4 +26,6 @@ public class UserModel {
     public void setRole(String role) { this.role = role; }
     public String getDob() { return dob; }
     public void setDob(String dob) { this.dob = dob; }
+    public String getProfileImage() { return profileImage; }
+    public void setProfileImage(String profileImage) { this.profileImage = profileImage; }
 }

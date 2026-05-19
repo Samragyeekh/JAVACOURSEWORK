@@ -1,5 +1,4 @@
 package com.lumiere.controller;
-
 import com.lumiere.utils.CookieUtil;
 import com.lumiere.utils.SessionUtil;
 import jakarta.servlet.ServletException;
@@ -12,10 +11,9 @@ import java.io.IOException;
 @WebServlet(asyncSupported = true, urlPatterns = { "/logout" })
 public class LogoutServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         SessionUtil.invalidate(request);
-        CookieUtil.removeCookie(response, "last_login");
+        CookieUtil.deleteCookie(response, "last_login");
         response.sendRedirect(request.getContextPath() + "/login");
     }
 }
