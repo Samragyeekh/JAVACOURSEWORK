@@ -286,6 +286,7 @@ public class ProductDescriptionServlet extends HttpServlet {
             }
 
             // Build recommendations list excluding the active product item up to 4 items max
+         // Build recommendations list excluding the active product item up to 4 items max
             List<ProductItem> availableRecs = new ArrayList<>();
             for (ProductItem item : allItems) {
                 if (item.getId() != selectedProduct.getId() && availableRecs.size() < 4) {
