@@ -33,7 +33,7 @@
                 </label>
             </form>
 
-            <!-- PURE CSS HIDDEN COUNTER RADIOS (Per Card Unique Scope) -->
+            <!-- Hidden CSS Radio Controls for Each Card -->
             <input type="radio" name="qty-group-${p.id}" id="qty-${p.id}-1" class="qty-radio qty-r-1" checked>
             <input type="radio" name="qty-group-${p.id}" id="qty-${p.id}-2" class="qty-radio qty-r-2">
             <input type="radio" name="qty-group-${p.id}" id="qty-${p.id}-3" class="qty-radio qty-r-3">
@@ -54,11 +54,11 @@
                 </div>
             </div>
 
-            <!-- TACTILE OVERLAY DRAWER -->
+            <!--  Overlay Drawer for Quick Actions -->
             <div class="card-overlay">
                 <div class="qty-stepper-container">
                     
-                    <!-- Minus Action Labels -->
+                    <!-- Action Labels -->
                     <div class="minus-btn-stack">
                         <label class="step-lbl l-down-disabled"><i class="fas fa-minus"></i></label>
                         <label for="qty-${p.id}-1" class="step-lbl l-down-to-1"><i class="fas fa-minus"></i></label>
@@ -131,7 +131,7 @@
     </c:forEach>
 </div>
 
-<!-- PAGINATION SYSTEM BAR -->
+<!-- Pagination Navigation Bar -->
 <div class="pagination-container">
     <div class="pagination-bar">
         <c:choose>

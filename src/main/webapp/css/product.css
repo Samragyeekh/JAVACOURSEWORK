@@ -87,7 +87,7 @@ body {
 }
 .price { color: #9c6644; }
 
-/* FLOATING HEART ICON */
+/* floating heart icon */
 .wish-toggle { display: none; }
 .btn-wish {
     position: absolute;
@@ -112,7 +112,7 @@ body {
     background: #ffffff;
 }
 
-/* OVERLAY DRAWER PANEL ANIMATION BASE */
+/* Base Animation for the Overlay Panel*/
 .card-overlay {
     position: absolute;
     bottom: 0;
@@ -134,7 +134,7 @@ body {
     transform: translateY(0);
 }
 
-/* PURE CSS TACTILE - 1 + STEPPER ENGINE SHEET */
+/* CSS Stepper Controls*/
 .qty-radio {
     display: none;
 }
@@ -180,25 +180,25 @@ body {
     cursor: default;
 }
 
-/* DISPLAY DIGIT VARIATIONS BASED ON RADIO STATUS */
+/* Update Digits Based on Selected Radio State */
 .qty-r-1:checked ~ .card-overlay .digit-1,
 .qty-r-2:checked ~ .card-overlay .digit-2,
 .qty-r-3:checked ~ .card-overlay .digit-3,
 .qty-r-4:checked ~ .card-overlay .digit-4 { display: flex; }
 
-/* MINUS BUTTON CONFIGURATIONS */
+/* minus button styles */
 .qty-r-1:checked ~ .card-overlay .l-down-disabled { display: flex; color: #e6ccb2; cursor: not-allowed; }
 .qty-r-2:checked ~ .card-overlay .l-down-to-1 { display: flex; }
 .qty-r-3:checked ~ .card-overlay .l-down-to-2 { display: flex; }
 .qty-r-4:checked ~ .card-overlay .l-down-to-3 { display: flex; }
 
-/* PLUS BUTTON CONFIGURATIONS */
+/* plus button styles */
 .qty-r-1:checked ~ .card-overlay .l-up-to-2 { display: flex; }
 .qty-r-2:checked ~ .card-overlay .l-up-to-3 { display: flex; }
 .qty-r-3:checked ~ .card-overlay .l-up-to-4 { display: flex; }
 .qty-r-4:checked ~ .card-overlay .l-up-disabled { display: flex; color: #e6ccb2; cursor: not-allowed; }
 
-/* DYNAMIC PRICING BUTTON SELECTORS */
+/* dynamic price button states */
 
 .cart-form-container { 
     flex: 1; 
@@ -306,7 +306,7 @@ body {
     pointer-events: none;
 }
 
-/* MODAL BACKGROUND BLUR POPUPS */
+/* modal background blur popups */
 .modal-backdrop-overlay {
     position: fixed;
     top: 0;
