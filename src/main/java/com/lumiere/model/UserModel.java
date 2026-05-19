@@ -2,7 +2,9 @@ package com.lumiere.model;
 
 public class UserModel {
     private int id;
-    private String firstName, lastName, username, email, password, phone, gender, role, dob, profileImage;
+    private String firstName, lastName, username, email, password, phone, gender, role;
+    private String dob;
+    private String profileImage;
 
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
