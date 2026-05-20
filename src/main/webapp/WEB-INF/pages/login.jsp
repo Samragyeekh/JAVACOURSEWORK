@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,10 +19,9 @@
     </div>
     <div class="form-side">
         <h2>Welcome Back</h2>
-        <% String error = (String) request.getAttribute("error"); %>
-        <% if (error != null) { %>
-            <p class="error-msg"><%= error %></p>
-        <% } %>
+        <c:if test="${not empty requestScope.error}">
+            <p class="error-msg">${requestScope.error}</p>
+        </c:if>
         <form action="${pageContext.request.contextPath}/login" method="post">
             <div class="field">
                 <label for="username">Username</label>

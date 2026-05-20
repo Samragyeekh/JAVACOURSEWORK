@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,6 +17,12 @@
         <h1>Your Wishlist</h1>
         <p>Items you love, saved for later</p>
     </div>
+
+    <c:if test="${not empty requestScope.error}">
+        <div style="color:red; text-align:center; margin:10px;">
+            ${requestScope.error}
+        </div>
+    </c:if>
 
     <div class="wishlist-container">
         <c:choose>

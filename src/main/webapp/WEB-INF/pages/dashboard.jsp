@@ -1,15 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="com.lumiere.model.UserModel" %>
-<%@ page import="com.lumiere.model.ProductModel" %>
-<%@ page import="java.util.List" %>
-<%
-    UserModel user = (UserModel) session.getAttribute("user");
-    if (user == null) {
-        response.sendRedirect(request.getContextPath() + "/login");
-        return;
-    }
-    ProductModel editProduct = (ProductModel) request.getAttribute("editProduct");
-%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,65 +12,66 @@
 <%@ include file="/WEB-INF/pages/header.jsp" %>
 
 <div class="dashboard-container">
-    <h1>Welcome, <%= user.getFirstName() %>!</h1>
-    <p>Role: <%= user.getRole() %></p>
+    <h1>Welcome, ${sessionScope.user.firstName}!</h1>
+    <p>Role: ${sessionScope.user.role}</p>
 
-    <% String success = (String) request.getAttribute("success"); %>
-    <% String error = (String) request.getAttribute("error"); %>
-    <% if (success != null) { %><p class="success"><%= success %></p><% } %>
-    <% if (error != null) { %><p class="error"><%= error %></p><% } %>
+    <c:if test="${not empty requestScope.success}">
+        <p class="success">${requestScope.success}</p>
+    </c:if>
+    <c:if test="${not empty requestScope.error}">
+        <p class="error">${requestScope.error}</p>
+    </c:if>
 
     <h2>Manage Products</h2>
 
-    <% if (editProduct != null) { %>
-    <h3>Edit Product</h3>
-    <form action="${pageContext.request.contextPath}/dashboard" method="post">
-        <input type="hidden" name="action" value="update">
-        <input type="hidden" name="id" value="<%= editProduct.getId() %>">
-        <input type="text" name="name" value="<%= editProduct.getName() %>" placeholder="Product Name" required>
-        <input type="text" name="description" value="<%= editProduct.getDescription() %>" placeholder="Description" required>
-        <input type="number" name="price" value="<%= editProduct.getPrice() %>" placeholder="Price" step="0.01" required>
-        <input type="number" name="stock" value="<%= editProduct.getStock() %>" placeholder="Stock" required>
-        <input type="text" name="category" value="<%= editProduct.getCategory() %>" placeholder="Category">
-        <input type="text" name="imageUrl" value="<%= editProduct.getImageUrl() %>" placeholder="Image URL">
-        <button type="submit">Update Product</button>
-        <a href="${pageContext.request.contextPath}/dashboard">Cancel</a>
-    </form>
-    <% } else { %>
-    <form action="${pageContext.request.contextPath}/dashboard" method="post">
-        <input type="hidden" name="action" value="add">
-        <input type="text" name="name" placeholder="Product Name" required>
-        <input type="text" name="description" placeholder="Description" required>
-        <input type="number" name="price" placeholder="Price" step="0.01" required>
-        <input type="number" name="stock" placeholder="Stock" required>
-        <input type="text" name="category" placeholder="Category">
-        <input type="text" name="imageUrl" placeholder="Image URL">
-        <button type="submit">Add Product</button>
-    </form>
-    <% } %>
+    <c:choose>
+        <c:when test="${not empty requestScope.editProduct}">
+            <h3>Edit Product</h3>
+            <form action="${pageContext.request.contextPath}/dashboard" method="post">
+                <input type="hidden" name="action" value="update">
+                <input type="hidden" name="id" value="${requestScope.editProduct.id}">
+                <input type="text" name="name" value="${requestScope.editProduct.name}" placeholder="Product Name" required>
+                <input type="text" name="description" value="${requestScope.editProduct.description}" placeholder="Description" required>
+                <input type="number" name="price" value="${requestScope.editProduct.price}" placeholder="Price" step="0.01" required>
+                <input type="number" name="stock" value="${requestScope.editProduct.stock}" placeholder="Stock" required>
+                <input type="text" name="category" value="${requestScope.editProduct.category}" placeholder="Category">
+                <input type="text" name="imageUrl" value="${requestScope.editProduct.imageUrl}" placeholder="Image URL">
+                <button type="submit">Update Product</button>
+                <a href="${pageContext.request.contextPath}/dashboard">Cancel</a>
+            </form>
+        </c:when>
+        <c:otherwise>
+            <form action="${pageContext.request.contextPath}/dashboard" method="post">
+                <input type="hidden" name="action" value="add">
+                <input type="text" name="name" placeholder="Product Name" required>
+                <input type="text" name="description" placeholder="Description" required>
+                <input type="number" name="price" placeholder="Price" step="0.01" required>
+                <input type="number" name="stock" placeholder="Stock" required>
+                <input type="text" name="category" placeholder="Category">
+                <input type="text" name="imageUrl" placeholder="Image URL">
+                <button type="submit">Add Product</button>
+            </form>
+        </c:otherwise>
+    </c:choose>
 
     <table>
         <tr>
             <th>ID</th><th>Name</th><th>Price</th><th>Stock</th><th>Category</th><th>Actions</th>
         </tr>
-        <%
-            List<ProductModel> products = (List<ProductModel>) request.getAttribute("products");
-            if (products != null) {
-                for (ProductModel p : products) {
-        %>
+        <c:forEach var="p" items="${requestScope.products}">
         <tr>
-            <td><%= p.getId() %></td>
-            <td><%= p.getName() %></td>
-            <td>Rs. <%= p.getPrice() %></td>
-            <td><%= p.getStock() %></td>
-            <td><%= p.getCategory() %></td>
+            <td>${p.id}</td>
+            <td>${p.name}</td>
+            <td>Rs. ${p.price}</td>
+            <td>${p.stock}</td>
+            <td>${p.category}</td>
             <td>
-                <a href="${pageContext.request.contextPath}/dashboard?action=edit&id=<%= p.getId() %>">Edit</a>
-                <a href="${pageContext.request.contextPath}/dashboard?action=delete&id=<%= p.getId() %>"
+                <a href="${pageContext.request.contextPath}/dashboard?action=edit&id=${p.id}">Edit</a>
+                <a href="${pageContext.request.contextPath}/dashboard?action=delete&id=${p.id}"
                    onclick="return confirm('Delete this product?')">Delete</a>
             </td>
         </tr>
-        <% } } %>
+        </c:forEach>
     </table>
 </div>
 
